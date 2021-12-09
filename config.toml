@@ -86,7 +86,7 @@ enableEmoji = true
         name = "HackNotes"
         url = "https://wixnic.gitbook.io/hacknotes/"
         title = ""
-        weight = 5 
+        weight = 6 
     [languages.en.params]
       # site description
       description = "IT Security"
@@ -275,6 +275,14 @@ enableEmoji = true
         url = "/about/"
         title = ""
         weight = 5
+        [[languages.es.menu.main]]
+        identifier = "hacknotes"
+        pre = ""
+        post = ""
+        name = "HackNotes"
+        url = "https://wixnic.gitbook.io/hacknotes/"
+        title = ""
+        weight = 6 
     [languages.es.params]
       # 网站描述
       description = "IT Security"
