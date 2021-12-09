@@ -61,4 +61,4 @@ Disallow: /
 User-agent: ZoominfoBot
 Disallow: /
 
-Sitemap: https://wixnic.github.io/sitemap.xml
+Sitemap: http://wixnic.github.io/sitemap.xml
