@@ -209,7 +209,7 @@ enableEmoji = true
         Matrix = ""
         Bilibili = ""
         # Email = "xxxx@xxxx.com"
-        GitBook = "https://wixnic.gitbook.io/hacknotes/"
+        # GitBook = "https://wixnic.gitbook.io/hacknotes/"
         RSS = true
         #[languages.en.params.social.Mastodon]
         #  id = "@xxxx"
@@ -398,7 +398,7 @@ enableEmoji = true
         #Matrix = ""
         #Bilibili = "xxxx"
         #Email = "xxxx@xxxx.com"
-        GitBook = "https://wixnic.gitbook.io/hacknotes/"
+        # GitBook = "https://wixnic.gitbook.io/hacknotes/"
         RSS = true
 
 [params]
