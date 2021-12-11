@@ -6,7 +6,7 @@ authorLink: ""
 description: "This is my description."
 license: ""
 images: []
-date: 2021-10-22 11:33:00 +0800
+date: 2021-12-11 11:33:00 +0800
 categories: [Linux Privilege Escalation]
 tags: [youtube, privilege escalation, shared object injection]
 featuredImage: "/images/thumbnails/Linux-Thumbnail-Privilege-Escalation-Shared-Object-Injection.png"
