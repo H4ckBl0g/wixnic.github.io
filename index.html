@@ -1,6 +1,6 @@
 <!doctype html><html lang=en>
 <head>
-<meta name=generator content="Hugo 0.90.0">
+<meta name=generator content="Hugo 0.90.1">
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="noodp">
@@ -93,9 +93,20 @@ Cancel
 <p>As always, we need to have a comfortable space to work with so I&rsquo;ll create my working directories with the mk function that I have defined in my Z shell:</p></div><div class=post-footer>
 <a href=/htb_traverxec/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/youtube/>youtube</a>,&nbsp;<a href=/tags/nostromo/>nostromo</a>,&nbsp;<a href=/tags/searchsploit/>searchsploit</a>,&nbsp;<a href=/tags/htaccess/>htaccess</a>,&nbsp;<a href=/tags/htpasswd/>htpasswd</a>,&nbsp;<a href=/tags/linpeas/>linpeas</a>,&nbsp;<a href=/tags/hashcat/>hashcat</a>,&nbsp;<a href=/tags/john/>john</a>,&nbsp;<a href=/tags/ssh-private-keys/>ssh-private-keys</a>,&nbsp;<a href=/tags/gtfobins/>gtfobins</a>,&nbsp;<a href=/tags/journalctl/>journalctl</a>,&nbsp;<a href=/tags/wget/>wget</a>,&nbsp;<a href=/tags/curl/>curl</a>,&nbsp;<a href=/tags/python/>python</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><div class=featured-image-preview>
+<a href=/linux-privesc-so-injection/><img class=lazyload src=/svg/loading.min.svg data-src=/images/thumbnails/Linux-Thumbnail-Privilege-Escalation-Shared-Object-Injection.png data-srcset="/images/thumbnails/Linux-Thumbnail-Privilege-Escalation-Shared-Object-Injection.png, /images/thumbnails/Linux-Thumbnail-Privilege-Escalation-Shared-Object-Injection.png 1.5x, /images/thumbnails/Linux-Thumbnail-Privilege-Escalation-Shared-Object-Injection.png 2x" data-sizes=auto alt=/images/thumbnails/Linux-Thumbnail-Privilege-Escalation-Shared-Object-Injection.png title="This is my description."></a>
+</div><h1 class=single-title itemprop="name headline">
+<a href=/linux-privesc-so-injection/>Linux Privilege Escalation - Shared Object Injection</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>wixnic</a></span>&nbsp;<span class=post-publish>published on <time datetime=2021-10-22>2021-10-22</time></span>&nbsp;<span class=post-category>included in <a href=/categories/linux-privilege-escalation/><i class="far fa-folder fa-fw"></i>Linux Privilege Escalation</a></span></div><div class=content>Video Setting Up Install the required packages for this video:
+1 low@ubuntu:~$ sudo apt update && sudo apt install -y vim gcc Now clear the screen:
+1 low@ubuntu:~$ clear Let&rsquo;s start by creating a working directory:
+1 2 3 4 low@ubuntu:~$ mkdir so-files low@ubuntu:~$ cd !$ cd so-files low@ubuntu:~/so-files$ We&rsquo;ll create a file named libcustom.c:
+1 low@ubuntu:~/so-files$ vim libcustom.c This print a message and nothing more:</div><div class=post-footer>
+<a href=/linux-privesc-so-injection/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/youtube/>youtube</a>,&nbsp;<a href=/tags/privilege-escalation/>privilege escalation</a>,&nbsp;<a href=/tags/shared-object-injection/>shared object injection</a></div></div>
 </article></div></div>
 </main><footer class=footer>
-<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.90.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.90.1">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
 </div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>wixnic</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
 </div>
 </footer></div>
