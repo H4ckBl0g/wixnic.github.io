@@ -9,8 +9,8 @@ images: []
 date: 2021-12-23 11:33:00 +0800
 categories: [HackTheBox Nix]
 tags: [ssh, smtp, freepbx, elastix, smtp-log-poisoning, ssh-algorithms, privilege-escalation-nmap, privilege-escalation-chmod, autopwn, bash, wget, curl, python]
-#featuredImage: "/images/thumbnails/HTB-Thumbnail-Traverxec-Spanish.png"
-#featuredImagePreview: "/images/thumbnails/HTB-Thumbnail-Traverxec-Spanish.png"
+featuredImage: "/images/thumbnails/htb-beep.png"
+featuredImagePreview: "/images/thumbnails/htb-beep.png"
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
