@@ -136,7 +136,7 @@ Once it finishes, we can read the nmap file:
 cat scans/nmap-tcpscripts.nmap 
 ```
 
-# Web - Port 80 -> 443
+# Web - TCP 80 -> TCP 443
 
 ## Response Headers Enumeration
 
@@ -403,7 +403,7 @@ If we try admin:admin it doesn't login, however, if we hit cancel we get redirec
 
 ![[http-basic-auth-cancel-redirect.png]]
 
-### LFI
+## LFI
 
 If we use searchsploit to find exploits on Elastix:
 
@@ -545,7 +545,7 @@ Let's filter the usernames and save it to a file:
 ───────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 
-# SMTP - TCP Port 25
+# SMTP - TCP 25
 
 We can use telnet to connect to SMTP:
 
@@ -698,7 +698,7 @@ bash-3.2$ whoami
 asterisk
 ```
 
-# SSH - TCP Port 22 [Path #2]
+# SSH - TCP 22 [Path #2]
 
 We can try to bruteforce SSH:
 
@@ -806,7 +806,7 @@ uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10
 [root@beep ~]#
 ```
 
-# Webmin - TCP Port 10000
+# Webmin - TCP 10000
 
 Webmin is being hosted on port TCP 10000 with SSL:
 
