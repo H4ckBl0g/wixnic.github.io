@@ -597,7 +597,7 @@ Let's filter the usernames and save it to a file:
 ───────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 
-## SMTP
+# SMTP - TCP Port 25
 
 We can use telnet to connect to SMTP:
 
@@ -750,7 +750,7 @@ bash-3.2$ whoami
 asterisk
 ```
 
-## SSH - TCP 22 [Path #2]
+# SSH - TCP Port 22 [Path #2]
 
 We can try to bruteforce SSH:
 
@@ -858,9 +858,9 @@ uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10
 [root@beep ~]#
 ```
 
-## Webmin - TCP 10000
+# Webmin - TCP Port 10000
 
-Webmin is being hosted on TCP 10000 with SSL:
+Webmin is being hosted on port TCP 10000 with SSL:
 
 ```shell
 ❯ curl -Isk "http://10.10.10.7:10000/"
@@ -962,7 +962,7 @@ uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10
 root
 ```
 
-## FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Execution [Path #5]
+# FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Execution [Path #5]
 
 Since we know that FreePBX is running of this server, we can try this POC:
 
