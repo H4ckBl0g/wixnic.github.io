@@ -108,7 +108,7 @@ OS: Unix/Linux
 
 Entonces podemos intentar ejecutar un `TCP SYN scan`, no confundirlo con un `TCP connect scan`, nmap utiliza un TCP SYN Scan `-sS` por defecto, por lo que no es necesario especificarlo. 
 
-Puedes leer la página de manual aquí: ![nmap](https://nmap.org/book/man-port-scanning-techniques.html)
+Puedes leer la página de manual aquí: [nmap](https://nmap.org/book/man-port-scanning-techniques.html)
 
 ```shell
 ❯ sudo nmap -p- -n -Pn --min-rate 5000 -oG scans/nmap-tcpall 10.10.10.7
@@ -448,11 +448,11 @@ panel                   [Status: 301, Size: 309, Words: 20, Lines: 10]
 
 Al ir a /admin, pide un inicio de sesión con autenticación básica HTTP:
 
-![[admin.png]]
+![admin](/images/posts/admin.png)
 
 Si intentamos admin:admin no entra, sin embargo, si le damos a cancelar nos redirige a /admin/config.php:
 
-![[http-basic-auth-cancel-redirect.png]]
+![HTTP Basic Auth Redirect](/images/posts/http-basic-auth-cancel-redirect.png)
 
 ## LFI
 
@@ -474,7 +474,7 @@ FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Executi | php/webapps/18650.py
 Shellcodes: No Results
 ```
 
-Podemos ver una vista exploits, para acotar esto podemos usar la pista de la máquina, que dice LFI, o podemos leer cada exploit y confirmar si la vulnerabilidad existe, en este caso si leemos el exploit el siguiente exploit de perl:
+Podemos ver una lista de exploits, para acotar esto podemos usar la pista de la máquina, que dice LFI, o podemos leer cada exploit y confirmar si la vulnerabilidad existe, en este caso si leemos el exploit el siguiente exploit de perl:
 
 ```shell
 ❯ searchsploit -x php/webapps/37637.pl
@@ -616,7 +616,7 @@ Alternativamente, podemos utilizar nc:
 220 beep.localdomain ESMTP Postfix # < wait for this
 ```
 
-### SMTP User Enumeration
+## SMTP User Enumeration
 
 Podemos validar que los usuarios que tienen un `email` en SMTP:
 
@@ -940,13 +940,13 @@ root
 
  Podemos acceder a webmin con las credenciales root:jEhdIekWmdjE. 
  
-![[webmin-admin-page.png]]
+![webmin](/images/posts/webmin-admin-page.png)
  
  Esta interfaz está diseñada para administrar el sistema y tenemos acceso de root debido a las credenciales que encontramos antes, así que podemos crear una tarea como root:
  
-![[schedule-command.png]]
+![schedule command](/images/posts/schedule-command.png)
 
-![[schedule-command-created.png]]
+![schedule command created](/images/posts/schedule-command-created.png)
  
 En un minuto (dependiendo del tiempo que les hayas dado), el script se ejecutará y obtendremos una shell inversa:
 
@@ -1002,10 +1002,10 @@ Tenemos que modificar lo siguiente:
 
 
 Podemos utilizar el script python de sipvicious svwar para encontrar números de extensiones válidos:
-![sipvicious github](https://github.com/EnableSecurity/sipvicious/)
+[sipvicious github](https://github.com/EnableSecurity/sipvicious/)
 
 Podemos instalar sipvicious leyendo su página de documentación: 
-![sipvicious installation doc](https://github.com/EnableSecurity/sipvicious/wiki/Basics#installation)
+[sipvicious installation doc](https://github.com/EnableSecurity/sipvicious/wiki/Basics#installation)
 
 ```shell
 git clone https://github.com/enablesecurity/sipvicious.git
@@ -1095,7 +1095,7 @@ User asterisk may run the following commands on this host:
 ```
 
 GTFOBins tiene una cheatsheet para abusar el binario de nmap:
-![GTFOBins nmpa sudo](https://gtfobins.github.io/gtfobins/nmap/#sudo)
+[GTFOBins nmpa sudo](https://gtfobins.github.io/gtfobins/nmap/#sudo)
 
 Puedes escalar a root:
 
