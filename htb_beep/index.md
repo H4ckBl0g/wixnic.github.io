@@ -57,7 +57,7 @@ OS: Unix/Linux
 
 Then we can try to run a `TCP SYN scan`, not to be confused with a `TCP connect scan`, nmap uses a TCP SYN Scan `-sS` by default, so you don't have to specify it. 
 
-You can read the man page here: ![nmap](https://nmap.org/book/man-port-scanning-techniques.html)
+You can read the man page here: [nmap](https://nmap.org/book/man-port-scanning-techniques.html)
 
 ```shell
 ❯ sudo nmap -p- -n -Pn --min-rate 5000 -oG scans/nmap-tcpall 10.10.10.7
@@ -397,11 +397,11 @@ panel                   [Status: 301, Size: 309, Words: 20, Lines: 10]
 
 Going to /admin, it prompts for a HTTP Basic Authentication Login:
 
-![[admin.png]]
+![admin](/images/posts/admin.png)
 
 If we try admin:admin it doesn't login, however, if we hit cancel we get redirected to /admin/config.php:
 
-![[http-basic-auth-cancel-redirect.png]]
+![HTTP Basic Auth Redirect](/images/posts/http-basic-auth-cancel-redirect.png)
 
 ## LFI
 
@@ -565,7 +565,7 @@ Alternatively, we can use nc:
 220 beep.localdomain ESMTP Postfix # < wait for this
 ```
 
-### SMTP User Enumeration
+## SMTP User Enumeration
 
 We can validate that users have an `email` in SMTP:
 
@@ -889,13 +889,13 @@ root
 
  I can login to webmin with the credentials root:jEhdIekWmdjE. 
  
-![[webmin-admin-page.png]]
+![webmin](/images/posts/webmin-admin-page.png)
  
  This interface is designed to administer the system and we have root access because of the credentials that we found earlier so we can create a task as root:
  
-![[schedule-command.png]]
+![schedule command](/images/posts/schedule-command.png)
 
-![[schedule-command-created.png]]
+![schedule command created](/images/posts/schedule-command-created.png)
  
 In a minute (depending on the time you have given them), the script will run and we will get a reverse shell:
 
@@ -950,10 +950,10 @@ We need to modify the following:
 - Change the extension number with a valid number
 
 We can use the sipvicious svwar python script to find valid extensions numbers.
-![sipvicious github](https://github.com/EnableSecurity/sipvicious/)
+[sipvicious github](https://github.com/EnableSecurity/sipvicious/)
 
 We can install sip vicious by reading it's documentation page: 
-![sipvicious installation doc](https://github.com/EnableSecurity/sipvicious/wiki/Basics#installation)
+[sipvicious installation doc](https://github.com/EnableSecurity/sipvicious/wiki/Basics#installation)
 
 ```shell
 git clone https://github.com/enablesecurity/sipvicious.git
@@ -1043,7 +1043,7 @@ User asterisk may run the following commands on this host:
 ```
 
 GTFOBins has a cheatsheet to abuse the nmap binary:
-![GTFOBins nmpa sudo](https://gtfobins.github.io/gtfobins/nmap/#sudo)
+[GTFOBins nmpa sudo](https://gtfobins.github.io/gtfobins/nmap/#sudo)
 
 You can escalate to root:
 
