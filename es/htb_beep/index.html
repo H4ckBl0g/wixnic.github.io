@@ -17,7 +17,7 @@
 <meta name=application-name content="wixnic">
 <meta name=apple-mobile-web-app-title content="wixnic"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://wixnic.github.io/es/htb_beep/><link rel=prev href=https://wixnic.github.io/es/htb_traverxec/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"HackTheBox - Beep","inLanguage":"es","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wixnic.github.io\/es\/htb_beep\/"},"image":["https:\/\/wixnic.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"ssh, smtp, freepbx, elastix, smtp-log-poisoning, lfi, rce, ssh-algorithms, privilege-escalation-nmap, privilege-escalation-chmod, autopwn, bash, wget, curl, python","wordcount":5225,"url":"https:\/\/wixnic.github.io\/es\/htb_beep\/","datePublished":"2021-12-23T11:33:00+08:00","dateModified":"2021-12-23T11:33:00+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/wixnic.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"wixnic"},"description":"This is my description."}</script></head>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://wixnic.github.io/es/htb_beep/><link rel=prev href=https://wixnic.github.io/es/htb_traverxec/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"HackTheBox - Beep","inLanguage":"es","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wixnic.github.io\/es\/htb_beep\/"},"image":["https:\/\/wixnic.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"ssh, smtp, freepbx, elastix, smtp-log-poisoning, lfi, rce, ssh-algorithms, privilege-escalation-nmap, privilege-escalation-chmod, autopwn, bash, wget, curl, python","wordcount":5230,"url":"https:\/\/wixnic.github.io\/es\/htb_beep\/","datePublished":"2021-12-23T11:33:00+08:00","dateModified":"2021-12-23T11:33:00+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/wixnic.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"wixnic"},"description":"This is my description."}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -89,7 +89,7 @@ Cancelar
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">HackTheBox - Beep</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/es/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>wixnic</a></span>&nbsp;<span class=post-category>incluido en <a href=/es/categories/hackthebox-nix/><i class="far fa-folder fa-fw"></i>HackTheBox Nix</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-12-23>2021-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;5225 palabras&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-12-23>2021-12-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;5230 palabras&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;25 minutos&nbsp;<span id=/es/htb_beep/ class=leancloud_visitors data-flag-title="HackTheBox - Beep">
 <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;vistas
 </span>&nbsp;</div>
@@ -121,11 +121,7 @@ Cancelar
 </li>
 <li><a href=#smtp---tcp-25>SMTP - TCP 25</a>
 <ul>
-<li>
-<ul>
 <li><a href=#smtp-user-enumeration>SMTP User Enumeration</a></li>
-</ul>
-</li>
 <li><a href=#smtp-log-poisoning-through-lfi-to-rce-path-1>SMTP Log Poisoning through LFI to RCE [Path #1]</a></li>
 </ul>
 </li>
@@ -224,7 +220,7 @@ OS: Unix/Linux
 </div>
 </div><h2 id=tcp-syn-scan>TCP SYN Scan</h2>
 <p>Entonces podemos intentar ejecutar un <code>TCP SYN scan</code>, no confundirlo con un <code>TCP connect scan</code>, nmap utiliza un TCP SYN Scan <code>-sS</code> por defecto, por lo que no es necesario especificarlo.</p>
-<p>Puedes leer la página de manual aquí: <img class=lazyload src=/svg/loading.min.svg data-src=https://nmap.org/book/man-port-scanning-techniques.html data-srcset="https://nmap.org/book/man-port-scanning-techniques.html, https://nmap.org/book/man-port-scanning-techniques.html 1.5x, https://nmap.org/book/man-port-scanning-techniques.html 2x" data-sizes=auto alt=https://nmap.org/book/man-port-scanning-techniques.html title=nmap></p>
+<p>Puedes leer la página de manual aquí: <a href=https://nmap.org/book/man-port-scanning-techniques.html target=_blank rel="noopener noreffer">nmap</a></p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -837,9 +833,9 @@ panel                   <span class=o>[</span>Status: 301, Size: 309, Words: 20,
 </div>
 </div><h3 id=admin>/admin</h3>
 <p>Al ir a /admin, pide un inicio de sesión con autenticación básica HTTP:</p>
-<p>![[admin.png]]</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/admin.png data-srcset="/images/posts/admin.png, /images/posts/admin.png 1.5x, /images/posts/admin.png 2x" data-sizes=auto alt=/images/posts/admin.png title=admin></p>
 <p>Si intentamos admin:admin no entra, sin embargo, si le damos a cancelar nos redirige a /admin/config.php:</p>
-<p>![[http-basic-auth-cancel-redirect.png]]</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/http-basic-auth-cancel-redirect.png data-srcset="/images/posts/http-basic-auth-cancel-redirect.png, /images/posts/http-basic-auth-cancel-redirect.png 1.5x, /images/posts/http-basic-auth-cancel-redirect.png 2x" data-sizes=auto alt=/images/posts/http-basic-auth-cancel-redirect.png title="HTTP Basic Auth Redirect"></p>
 <h2 id=lfi>LFI</h2>
 <p>Si usamos searchsploit para encontrar exploits en Elastix:</p>
 <div class=highlight><div class=chroma>
@@ -874,7 +870,7 @@ FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Executi <span class=p>|</span> php/
 Shellcodes: No Results
 </code></pre></td></tr></table>
 </div>
-</div><p>Podemos ver una vista exploits, para acotar esto podemos usar la pista de la máquina, que dice LFI, o podemos leer cada exploit y confirmar si la vulnerabilidad existe, en este caso si leemos el exploit el siguiente exploit de perl:</p>
+</div><p>Podemos ver una lista de exploits, para acotar esto podemos usar la pista de la máquina, que dice LFI, o podemos leer cada exploit y confirmar si la vulnerabilidad existe, en este caso si leemos el exploit el siguiente exploit de perl:</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -1117,7 +1113,7 @@ Escape character is <span class=s1>&#39;^]&#39;</span>.
 <span class=m>220</span> beep.localdomain ESMTP Postfix <span class=c1># &lt; wait for this</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id=smtp-user-enumeration>SMTP User Enumeration</h3>
+</div><h2 id=smtp-user-enumeration>SMTP User Enumeration</h2>
 <p>Podemos validar que los usuarios que tienen un <code>email</code> en SMTP:</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -1661,10 +1657,10 @@ root
 </div>
 </div><h2 id=webmin-command-path-4>Webmin Command [Path #4]</h2>
 <p>Podemos acceder a webmin con las credenciales root:jEhdIekWmdjE.</p>
-<p>![[webmin-admin-page.png]]</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/webmin-admin-page.png data-srcset="/images/posts/webmin-admin-page.png, /images/posts/webmin-admin-page.png 1.5x, /images/posts/webmin-admin-page.png 2x" data-sizes=auto alt=/images/posts/webmin-admin-page.png title=webmin></p>
 <p>Esta interfaz está diseñada para administrar el sistema y tenemos acceso de root debido a las credenciales que encontramos antes, así que podemos crear una tarea como root:</p>
-<p>![[schedule-command.png]]</p>
-<p>![[schedule-command-created.png]]</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/schedule-command.png data-srcset="/images/posts/schedule-command.png, /images/posts/schedule-command.png 1.5x, /images/posts/schedule-command.png 2x" data-sizes=auto alt=/images/posts/schedule-command.png title="schedule command"></p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/schedule-command-created.png data-srcset="/images/posts/schedule-command-created.png, /images/posts/schedule-command-created.png 1.5x, /images/posts/schedule-command-created.png 2x" data-sizes=auto alt=/images/posts/schedule-command-created.png title="schedule command created"></p>
 <p>En un minuto (dependiendo del tiempo que les hayas dado), el script se ejecutará y obtendremos una shell inversa:</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -1753,9 +1749,9 @@ Shellcodes: No Results
 <li>Cambiar el número de extensión por un número válido</li>
 </ul>
 <p>Podemos utilizar el script python de sipvicious svwar para encontrar números de extensiones válidos:
-<img class=lazyload src=/svg/loading.min.svg data-src=https://github.com/EnableSecurity/sipvicious/ data-srcset="https://github.com/EnableSecurity/sipvicious/, https://github.com/EnableSecurity/sipvicious/ 1.5x, https://github.com/EnableSecurity/sipvicious/ 2x" data-sizes=auto alt=https://github.com/EnableSecurity/sipvicious/ title="sipvicious github"></p>
+<a href=https://github.com/EnableSecurity/sipvicious/ target=_blank rel="noopener noreffer">sipvicious github</a></p>
 <p>Podemos instalar sipvicious leyendo su página de documentación:
-<img class=lazyload src=/svg/loading.min.svg data-src=https://github.com/EnableSecurity/sipvicious/wiki/Basics#installation data-srcset="https://github.com/EnableSecurity/sipvicious/wiki/Basics#installation, https://github.com/EnableSecurity/sipvicious/wiki/Basics#installation 1.5x, https://github.com/EnableSecurity/sipvicious/wiki/Basics#installation 2x" data-sizes=auto alt=https://github.com/EnableSecurity/sipvicious/wiki/Basics#installation title="sipvicious installation doc"></p>
+<a href=https://github.com/EnableSecurity/sipvicious/wiki/Basics#installation target=_blank rel="noopener noreffer">sipvicious installation doc</a></p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -1913,7 +1909,7 @@ User asterisk may run the following commands on this host:
 </code></pre></td></tr></table>
 </div>
 </div><p>GTFOBins tiene una cheatsheet para abusar el binario de nmap:
-<img class=lazyload src=/svg/loading.min.svg data-src=https://gtfobins.github.io/gtfobins/nmap/#sudo data-srcset="https://gtfobins.github.io/gtfobins/nmap/#sudo, https://gtfobins.github.io/gtfobins/nmap/#sudo 1.5x, https://gtfobins.github.io/gtfobins/nmap/#sudo 2x" data-sizes=auto alt=https://gtfobins.github.io/gtfobins/nmap/#sudo title="GTFOBins nmpa sudo"></p>
+<a href=https://gtfobins.github.io/gtfobins/nmap/#sudo target=_blank rel="noopener noreffer">GTFOBins nmpa sudo</a></p>
 <p>Puedes escalar a root:</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
