@@ -117,19 +117,26 @@ Cancelar
 <li><a href=#searchsploit>Searchsploit</a></li>
 </ul>
 </li>
+</ul>
+</li>
 <li><a href=#smtp---port-tcp-25>SMTP - Port TCP 25</a>
+<ul>
+<li>
 <ul>
 <li><a href=#smtp-user-enumeration>SMTP User Enumeration</a></li>
 </ul>
 </li>
 <li><a href=#smtp-log-poisoning-through-lfi-to-rce-path-1>SMTP Log Poisoning through LFI to RCE [Path #1]</a></li>
-<li><a href=#ssh---tcp-22-path-2>SSH - TCP 22 [Path #2]</a></li>
-<li><a href=#webmin---tcp-10000>Webmin - TCP 10000</a></li>
-<li><a href=#shellshock-path-3>Shellshock [Path #3]</a></li>
-<li><a href=#webmin-command-path-4>Webmin Command [Path #4]</a></li>
-<li><a href=#freepbx-2100--elastix-220---remote-code-execution-path-5>FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Execution [Path #5]</a></li>
 </ul>
 </li>
+<li><a href=#ssh---tcp-22-path-2>SSH - TCP 22 [Path #2]</a></li>
+<li><a href=#webmin---tcp-10000>Webmin - TCP 10000</a>
+<ul>
+<li><a href=#shellshock-path-3>Shellshock [Path #3]</a></li>
+<li><a href=#webmin-command-path-4>Webmin Command [Path #4]</a></li>
+</ul>
+</li>
+<li><a href=#freepbx-2100--elastix-220---remote-code-execution-path-5>FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Execution [Path #5]</a></li>
 <li><a href=#privilege-escalation>Privilege Escalation</a></li>
 <li><a href=#autopwn>AutoPWN</a></li>
 </ul>
@@ -1079,7 +1086,7 @@ Sorry! Attempt to access restricted file.
 ───────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 </code></pre></td></tr></table>
 </div>
-</div><h2 id=smtp---port-tcp-25>SMTP - Port TCP 25</h2>
+</div><h1 id=smtp---port-tcp-25>SMTP - Port TCP 25</h1>
 <p>Podemos utilizar telnet para conectarnos a SMTP:</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -1343,7 +1350,7 @@ bash-3.2$ whoami
 asterisk
 </code></pre></td></tr></table>
 </div>
-</div><h2 id=ssh---tcp-22-path-2>SSH - TCP 22 [Path #2]</h2>
+</div><h1 id=ssh---tcp-22-path-2>SSH - TCP 22 [Path #2]</h1>
 <p>Podemos intentar la fuerza bruta de SSH:</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -1527,7 +1534,7 @@ http://10.10.10.7
 <span class=o>[</span>root@beep ~<span class=o>]</span><span class=c1>#</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id=webmin---tcp-10000>Webmin - TCP 10000</h2>
+</div><h1 id=webmin---tcp-10000>Webmin - TCP 10000</h1>
 <p>Webmin está alojado en el puerto TCP 10000 con SSL:</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -1681,7 +1688,7 @@ bash: no job control in this shell
 root
 </code></pre></td></tr></table>
 </div>
-</div><h2 id=freepbx-2100--elastix-220---remote-code-execution-path-5>FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Execution [Path #5]</h2>
+</div><h1 id=freepbx-2100--elastix-220---remote-code-execution-path-5>FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Execution [Path #5]</h1>
 <p>Como sabemos que FreePBX está funcionando en este servidor, podemos probar este POC:</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>

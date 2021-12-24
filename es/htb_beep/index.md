@@ -544,7 +544,7 @@ Filtremos los nombres de usuario y guardémoslos en un archivo:
 ───────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 
-## SMTP - Port TCP 25
+# SMTP - Port TCP 25
 
 Podemos utilizar telnet para conectarnos a SMTP:
 
@@ -697,7 +697,7 @@ bash-3.2$ whoami
 asterisk
 ```
 
-## SSH - TCP 22 [Path #2]
+# SSH - TCP 22 [Path #2]
 
 Podemos intentar la fuerza bruta de SSH:
 
@@ -805,7 +805,7 @@ uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10
 [root@beep ~]#
 ```
 
-## Webmin - TCP 10000
+# Webmin - TCP 10000
 
 Webmin está alojado en el puerto TCP 10000 con SSL:
 
@@ -909,7 +909,7 @@ uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10
 root
 ```
 
-## FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Execution [Path #5]
+# FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Execution [Path #5]
 
 Como sabemos que FreePBX está funcionando en este servidor, podemos probar este POC:
 
