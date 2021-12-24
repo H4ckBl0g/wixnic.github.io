@@ -187,7 +187,7 @@ Una vez que termina, podemos leer el archivo de nmap:
 cat scans/nmap-tcpscripts.nmap 
 ```
 
-# Web - Port TCP 80 -> TCP 443
+# Web - TCP 80 -> TCP 443
 
 ## Response Headers Enumeration
 
@@ -454,7 +454,7 @@ Si intentamos admin:admin no entra, sin embargo, si le damos a cancelar nos redi
 
 ![[http-basic-auth-cancel-redirect.png]]
 
-### Searchsploit
+## LFI
 
 Si usamos searchsploit para encontrar exploits en Elastix:
 
@@ -596,7 +596,7 @@ Filtremos los nombres de usuario y guardémoslos en un archivo:
 ───────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 
-# SMTP - Port TCP 25
+# SMTP - TCP 25
 
 Podemos utilizar telnet para conectarnos a SMTP:
 
