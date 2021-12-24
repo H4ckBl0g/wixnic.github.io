@@ -222,7 +222,7 @@ establish a secure connection to it. To learn more about this situation and
 how to fix it, please visit the web page mentioned above.
 ```
 
-Podemos ver un problema dell certificado SSL, así que vamos a ignorarlo con `-k`:
+Podemos ver un problema del certificado SSL, así que vamos a ignorarlo con `-k`:
 
 ```shell
 ❯ curl -Ik http://10.10.10.7 -L
@@ -1095,7 +1095,7 @@ User asterisk may run the following commands on this host:
 ```
 
 GTFOBins tiene una cheatsheet para abusar el binario de nmap:
-[GTFOBins nmpa sudo](https://gtfobins.github.io/gtfobins/nmap/#sudo)
+[GTFOBins nmap sudo](https://gtfobins.github.io/gtfobins/nmap/#sudo)
 
 Puedes escalar a root:
 
